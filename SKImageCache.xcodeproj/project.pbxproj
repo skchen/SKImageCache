@@ -10,6 +10,12 @@
 		826803941CAA258E00C8B952 /* SKImageCacheFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 826803931CAA258E00C8B952 /* SKImageCacheFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8268039B1CAA258F00C8B952 /* SKImageCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826803901CAA258E00C8B952 /* SKImageCache.framework */; };
 		826803A01CAA258F00C8B952 /* SKImageCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8268039F1CAA258F00C8B952 /* SKImageCacheTests.m */; };
+		826803B01CAA4D5200C8B952 /* SKFileCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 826803AE1CAA4D5200C8B952 /* SKFileCache.h */; };
+		826803B11CAA4D5200C8B952 /* SKFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 826803AF1CAA4D5200C8B952 /* SKFileCache.m */; };
+		826803B51CAA52B400C8B952 /* OCHamcrest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826803B31CAA52B400C8B952 /* OCHamcrest.framework */; };
+		826803B61CAA52B400C8B952 /* OCMockito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826803B41CAA52B400C8B952 /* OCMockito.framework */; };
+		826803B91CAA5B4900C8B952 /* SKUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826803B81CAA5B4900C8B952 /* SKUtils.framework */; };
+		826803BA1CAA5B6300C8B952 /* SKUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826803B81CAA5B4900C8B952 /* SKUtils.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +35,11 @@
 		8268039A1CAA258F00C8B952 /* SKImageCacheTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SKImageCacheTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8268039F1CAA258F00C8B952 /* SKImageCacheTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKImageCacheTests.m; sourceTree = "<group>"; };
 		826803A11CAA258F00C8B952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		826803AE1CAA4D5200C8B952 /* SKFileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFileCache.h; sourceTree = "<group>"; };
+		826803AF1CAA4D5200C8B952 /* SKFileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFileCache.m; sourceTree = "<group>"; };
+		826803B31CAA52B400C8B952 /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCHamcrest.framework; path = ../../Carthage/Build/iOS/OCHamcrest.framework; sourceTree = "<group>"; };
+		826803B41CAA52B400C8B952 /* OCMockito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMockito.framework; path = ../../Carthage/Build/iOS/OCMockito.framework; sourceTree = "<group>"; };
+		826803B81CAA5B4900C8B952 /* SKUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SKUtils.framework; path = Carthage/Build/iOS/SKUtils.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				826803B91CAA5B4900C8B952 /* SKUtils.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +55,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				826803BA1CAA5B6300C8B952 /* SKUtils.framework in Frameworks */,
+				826803B51CAA52B400C8B952 /* OCHamcrest.framework in Frameworks */,
+				826803B61CAA52B400C8B952 /* OCMockito.framework in Frameworks */,
 				8268039B1CAA258F00C8B952 /* SKImageCache.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,7 +86,9 @@
 		826803921CAA258E00C8B952 /* SKImageCache */ = {
 			isa = PBXGroup;
 			children = (
+				826803AD1CAA4D3700C8B952 /* SKFileCache */,
 				826803931CAA258E00C8B952 /* SKImageCacheFramework.h */,
+				826803AB1CAA4D0700C8B952 /* frameworks */,
 				826803951CAA258E00C8B952 /* Info.plist */,
 			);
 			path = SKImageCache;
@@ -80,10 +97,45 @@
 		8268039E1CAA258F00C8B952 /* SKImageCacheTests */ = {
 			isa = PBXGroup;
 			children = (
+				826803B21CAA4D6600C8B952 /* SKFileCache */,
 				8268039F1CAA258F00C8B952 /* SKImageCacheTests.m */,
+				826803AC1CAA4D1500C8B952 /* frameworks */,
 				826803A11CAA258F00C8B952 /* Info.plist */,
 			);
 			path = SKImageCacheTests;
+			sourceTree = "<group>";
+		};
+		826803AB1CAA4D0700C8B952 /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				826803B81CAA5B4900C8B952 /* SKUtils.framework */,
+			);
+			path = frameworks;
+			sourceTree = "<group>";
+		};
+		826803AC1CAA4D1500C8B952 /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				826803B31CAA52B400C8B952 /* OCHamcrest.framework */,
+				826803B41CAA52B400C8B952 /* OCMockito.framework */,
+			);
+			path = frameworks;
+			sourceTree = "<group>";
+		};
+		826803AD1CAA4D3700C8B952 /* SKFileCache */ = {
+			isa = PBXGroup;
+			children = (
+				826803AE1CAA4D5200C8B952 /* SKFileCache.h */,
+				826803AF1CAA4D5200C8B952 /* SKFileCache.m */,
+			);
+			path = SKFileCache;
+			sourceTree = "<group>";
+		};
+		826803B21CAA4D6600C8B952 /* SKFileCache */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SKFileCache;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -94,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				826803941CAA258E00C8B952 /* SKImageCacheFramework.h in Headers */,
+				826803B01CAA4D5200C8B952 /* SKFileCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +161,7 @@
 				8268038C1CAA258E00C8B952 /* Frameworks */,
 				8268038D1CAA258E00C8B952 /* Headers */,
 				8268038E1CAA258E00C8B952 /* Resources */,
+				826803BB1CAA5B8000C8B952 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -125,6 +179,7 @@
 				826803961CAA258F00C8B952 /* Sources */,
 				826803971CAA258F00C8B952 /* Frameworks */,
 				826803981CAA258F00C8B952 /* Resources */,
+				826803B71CAA52BB00C8B952 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -188,11 +243,45 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		826803B71CAA52BB00C8B952 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/OCHamcrest.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/OCMockito.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SKUtils.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		826803BB1CAA5B8000C8B952 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SKUtils.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8268038B1CAA258E00C8B952 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				826803B11CAA4D5200C8B952 /* SKFileCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +399,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SKImageCache/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -327,6 +420,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SKImageCache/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -340,6 +437,10 @@
 		826803A81CAA258F00C8B952 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SKImageCacheTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.skchen.SKImageCacheTests;
@@ -350,6 +451,10 @@
 		826803A91CAA258F00C8B952 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SKImageCacheTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.skchen.SKImageCacheTests;
