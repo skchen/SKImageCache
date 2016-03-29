@@ -1,0 +1,22 @@
+language: objective-c
+osx_image: xcode7.2
+xcode_project: SKImageCache.xcodeproj
+xcode_scheme: SKImageCache
+xcode_sdk: iphonesimulator
+before_install:
+- brew update
+- brew install carthage
+before_script:
+- carthage bootstrap --platform iOS
+before_deploy:
+- carthage build --no-skip-current --platform iOS
+- carthage archive SKImageCache
+deploy:
+  provider: releases
+  api_key:
+    secure: as0mIyD+9HMYxu2s8Aiwd7KZmPvDmaiWkhc8JAFPb5ZOx2BwUZqJUuJ+yKsot7/E3r48r1YnOmQ9dt1BSKBWKdNlMXU7XPJqRkk0k9e26D+8hWIc1a5zjxl35OZH3dFJa41B53uQ9sXB9NxWJqJUPx3IvCduFXWsJxzR+vh7uCjMyt8Y9VTj9/0EYFG0jqqa3YKZE7SRibQjLu5T2HYpmC0HF+ob+rtcFFzphaYqDb75aYcBrIjf8ooHZA8G51ndi4okpwWLTU6v8Ny7ZtKpkBfEtqUrpMOAeRnLSPn7J7EipMMMzKWsrY956ua1V5fP4STIXpuR1qOxP3ePsSzhBx0O+rrFz/pGB1L+zTxiVD13K5sOf+voVCfZUZMFww6x3BRqOTC0oClC6fC/b+/FyC1K0UfYMH0HHH5UWE0KfkMnEV8/U/8uxyOCgAXuvIXYvVy9c02NA+0v3gSfT0+o6Xq6TUUbG7yqEPld5qc6jIl9AR8TxIatm1ZZtNCRr52evduiWMuXnUPsY0m9mhcb+O2HSDvjChZjvhupiQijcs+DlfIOVbFTytw6A88DYRpYmntO8caNDFeEtcx8bjit1abn14q8Bz4RtH93ExUNkBcEvHMkTrN1/3JS7hCRnpHrhOoPHmCX8eIvbnk8UnciOHmyZlOw7wnBY3fat1tjxvw=
+  file: SKImageCache.framework.zip
+  skip_cleanup: true
+  on:
+    repo: skchen/SKImageCache
+    tags: true
