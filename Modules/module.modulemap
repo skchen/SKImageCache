@@ -1,0 +1,6 @@
+framework module SKImageCache {
+  umbrella header "SKImageCacheFramework.h"
+
+  export *
+  module * { export * }
+}
