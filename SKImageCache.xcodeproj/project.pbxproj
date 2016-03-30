@@ -9,16 +9,16 @@
 /* Begin PBXBuildFile section */
 		826803941CAA258E00C8B952 /* SKImageCacheFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 826803931CAA258E00C8B952 /* SKImageCacheFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8268039B1CAA258F00C8B952 /* SKImageCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826803901CAA258E00C8B952 /* SKImageCache.framework */; };
-		826803A01CAA258F00C8B952 /* SKFileCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8268039F1CAA258F00C8B952 /* SKFileCacheTests.m */; };
-		826803B01CAA4D5200C8B952 /* SKFileCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 826803AE1CAA4D5200C8B952 /* SKFileCache.h */; };
-		826803B11CAA4D5200C8B952 /* SKFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 826803AF1CAA4D5200C8B952 /* SKFileCache.m */; };
 		826803B51CAA52B400C8B952 /* OCHamcrest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826803B31CAA52B400C8B952 /* OCHamcrest.framework */; };
 		826803B61CAA52B400C8B952 /* OCMockito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826803B41CAA52B400C8B952 /* OCMockito.framework */; };
 		826803B91CAA5B4900C8B952 /* SKUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826803B81CAA5B4900C8B952 /* SKUtils.framework */; };
 		826803BA1CAA5B6300C8B952 /* SKUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826803B81CAA5B4900C8B952 /* SKUtils.framework */; };
-		826803CA1CAB930300C8B952 /* SKFileStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 826803C81CAB930300C8B952 /* SKFileStorage.h */; };
-		826803CB1CAB930300C8B952 /* SKFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 826803C91CAB930300C8B952 /* SKFileStorage.m */; };
-		826803CD1CAB931700C8B952 /* SKFileStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 826803CC1CAB931700C8B952 /* SKFileStorageTests.m */; };
+		826803DF1CABCC8900C8B952 /* SKFileCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 826803DB1CABCC8900C8B952 /* SKFileCache.h */; };
+		826803E01CABCC8900C8B952 /* SKFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 826803DC1CABCC8900C8B952 /* SKFileCache.m */; };
+		826803E11CABCC8900C8B952 /* SKFileStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 826803DD1CABCC8900C8B952 /* SKFileStorage.h */; };
+		826803E21CABCC8900C8B952 /* SKFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 826803DE1CABCC8900C8B952 /* SKFileStorage.m */; };
+		826803E61CABCC9300C8B952 /* SKFileCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 826803E41CABCC9300C8B952 /* SKFileCacheTests.m */; };
+		826803E71CABCC9300C8B952 /* SKFileStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 826803E51CABCC9300C8B952 /* SKFileStorageTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,16 +36,16 @@
 		826803931CAA258E00C8B952 /* SKImageCacheFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKImageCacheFramework.h; sourceTree = "<group>"; };
 		826803951CAA258E00C8B952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8268039A1CAA258F00C8B952 /* SKImageCacheTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SKImageCacheTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8268039F1CAA258F00C8B952 /* SKFileCacheTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SKFileCacheTests.m; path = ../SKFileCacheTests.m; sourceTree = "<group>"; };
 		826803A11CAA258F00C8B952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		826803AE1CAA4D5200C8B952 /* SKFileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFileCache.h; sourceTree = "<group>"; };
-		826803AF1CAA4D5200C8B952 /* SKFileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFileCache.m; sourceTree = "<group>"; };
 		826803B31CAA52B400C8B952 /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCHamcrest.framework; path = ../../Carthage/Build/iOS/OCHamcrest.framework; sourceTree = "<group>"; };
 		826803B41CAA52B400C8B952 /* OCMockito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMockito.framework; path = ../../Carthage/Build/iOS/OCMockito.framework; sourceTree = "<group>"; };
 		826803B81CAA5B4900C8B952 /* SKUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SKUtils.framework; path = Carthage/Build/iOS/SKUtils.framework; sourceTree = SOURCE_ROOT; };
-		826803C81CAB930300C8B952 /* SKFileStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFileStorage.h; sourceTree = "<group>"; };
-		826803C91CAB930300C8B952 /* SKFileStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFileStorage.m; sourceTree = "<group>"; };
-		826803CC1CAB931700C8B952 /* SKFileStorageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFileStorageTests.m; sourceTree = "<group>"; };
+		826803DB1CABCC8900C8B952 /* SKFileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFileCache.h; sourceTree = "<group>"; };
+		826803DC1CABCC8900C8B952 /* SKFileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFileCache.m; sourceTree = "<group>"; };
+		826803DD1CABCC8900C8B952 /* SKFileStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFileStorage.h; sourceTree = "<group>"; };
+		826803DE1CABCC8900C8B952 /* SKFileStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFileStorage.m; sourceTree = "<group>"; };
+		826803E41CABCC9300C8B952 /* SKFileCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFileCacheTests.m; sourceTree = "<group>"; };
+		826803E51CABCC9300C8B952 /* SKFileStorageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFileStorageTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +92,7 @@
 		826803921CAA258E00C8B952 /* SKImageCache */ = {
 			isa = PBXGroup;
 			children = (
-				826803AD1CAA4D3700C8B952 /* SKFileCache */,
+				826803DA1CABCC8900C8B952 /* FileCache */,
 				826803931CAA258E00C8B952 /* SKImageCacheFramework.h */,
 				826803AB1CAA4D0700C8B952 /* frameworks */,
 				826803951CAA258E00C8B952 /* Info.plist */,
@@ -103,7 +103,7 @@
 		8268039E1CAA258F00C8B952 /* SKImageCacheTests */ = {
 			isa = PBXGroup;
 			children = (
-				826803B21CAA4D6600C8B952 /* SKFileCache */,
+				826803E31CABCC9300C8B952 /* FileCache */,
 				826803AC1CAA4D1500C8B952 /* frameworks */,
 				826803A11CAA258F00C8B952 /* Info.plist */,
 			);
@@ -127,24 +127,24 @@
 			path = frameworks;
 			sourceTree = "<group>";
 		};
-		826803AD1CAA4D3700C8B952 /* SKFileCache */ = {
+		826803DA1CABCC8900C8B952 /* FileCache */ = {
 			isa = PBXGroup;
 			children = (
-				826803AE1CAA4D5200C8B952 /* SKFileCache.h */,
-				826803AF1CAA4D5200C8B952 /* SKFileCache.m */,
-				826803C81CAB930300C8B952 /* SKFileStorage.h */,
-				826803C91CAB930300C8B952 /* SKFileStorage.m */,
+				826803DB1CABCC8900C8B952 /* SKFileCache.h */,
+				826803DC1CABCC8900C8B952 /* SKFileCache.m */,
+				826803DD1CABCC8900C8B952 /* SKFileStorage.h */,
+				826803DE1CABCC8900C8B952 /* SKFileStorage.m */,
 			);
-			path = SKFileCache;
+			path = FileCache;
 			sourceTree = "<group>";
 		};
-		826803B21CAA4D6600C8B952 /* SKFileCache */ = {
+		826803E31CABCC9300C8B952 /* FileCache */ = {
 			isa = PBXGroup;
 			children = (
-				8268039F1CAA258F00C8B952 /* SKFileCacheTests.m */,
-				826803CC1CAB931700C8B952 /* SKFileStorageTests.m */,
+				826803E41CABCC9300C8B952 /* SKFileCacheTests.m */,
+				826803E51CABCC9300C8B952 /* SKFileStorageTests.m */,
 			);
-			path = SKFileCache;
+			path = FileCache;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,9 +154,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				826803CA1CAB930300C8B952 /* SKFileStorage.h in Headers */,
 				826803941CAA258E00C8B952 /* SKImageCacheFramework.h in Headers */,
-				826803B01CAA4D5200C8B952 /* SKFileCache.h in Headers */,
+				826803DF1CABCC8900C8B952 /* SKFileCache.h in Headers */,
+				826803E11CABCC8900C8B952 /* SKFileStorage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,8 +291,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				826803CB1CAB930300C8B952 /* SKFileStorage.m in Sources */,
-				826803B11CAA4D5200C8B952 /* SKFileCache.m in Sources */,
+				826803E01CABCC8900C8B952 /* SKFileCache.m in Sources */,
+				826803E21CABCC8900C8B952 /* SKFileStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,8 +300,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				826803CD1CAB931700C8B952 /* SKFileStorageTests.m in Sources */,
-				826803A01CAA258F00C8B952 /* SKFileCacheTests.m in Sources */,
+				826803E61CABCC9300C8B952 /* SKFileCacheTests.m in Sources */,
+				826803E71CABCC9300C8B952 /* SKFileStorageTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
