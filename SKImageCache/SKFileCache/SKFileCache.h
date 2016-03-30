@@ -8,13 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NSURL * _Nonnull (^MapperBlock)(id<NSCopying> _Nonnull key);
-typedef NSData * _Nonnull (^DownloaderBlock)(id<NSCopying> _Nonnull key);
+#import "SKFileStorage.h"
 
 @interface SKFileCache : NSObject
 
-- (nonnull instancetype)initWithCapacity:(NSUInteger)capacity andMapper:(nonnull MapperBlock)mapper andDownloader:(nonnull DownloaderBlock)downloader;
+- (nonnull instancetype)initWithCapacity:(NSUInteger)capacity andStorage:(nonnull SKFileStorage *)storage;
 
-- (nullable id)objectForKey:(nonnull id<NSCopying>)key;
+- (nullable NSURL *)fileUrlForObject:(nonnull id)object;
 
 @end

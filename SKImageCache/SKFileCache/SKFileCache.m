@@ -10,47 +10,33 @@
 
 @import SKUtils;
 
-@interface SKFileCache () <SKLruCacheSpiller>
+@interface SKFileCache () <SKLruListSpiller>
 
-@property(nonatomic, strong, readonly, nonnull) SKLruCache *urlCache;
-@property(nonatomic, copy, readonly, nonnull) MapperBlock mapper;
-@property(nonatomic, copy, readonly, nonnull) DownloaderBlock downloader;
+@property(nonatomic, strong, readonly, nonnull) SKLruList *list;
+@property(nonatomic, strong, readonly, nonnull) SKFileStorage *storage;
 
 @end
 
 @implementation SKFileCache
 
-- (nonnull instancetype)initWithCapacity:(NSUInteger)capacity andMapper:(nonnull MapperBlock)mapper andDownloader:(nonnull DownloaderBlock)downloader {
+- (nonnull instancetype)initWithCapacity:(NSUInteger)capacity andStorage:(nonnull SKFileStorage *)storage {
     self = [super init];
-    _urlCache = [[SKLruCache alloc] initWithCapacity:capacity andSpiller:self];
-    _mapper = mapper;
-    _downloader = downloader;
+    _list = [[SKLruList alloc] initWithCapacity:capacity andSpiller:self];
+    _storage = storage;
     return self;
 }
 
-- (nullable id)objectForKey:(nonnull id<NSCopying>)key {
-    NSURL *url = [_urlCache objectForKey:key];
+- (nullable NSURL *)fileUrlForObject:(nonnull id)object {
+    NSURL *fileUrl = [_storage fileUrlForObject:object];
+    [_list touchObject:object];
     
-    if(!url) {
-        url = _mapper(key);
-        NSData *data = _downloader(key);
-        
-        [data writeToURL:url atomically:YES];
-        [_urlCache setObject:url forKey:key];
-    }
-    
-    return url;
+    return fileUrl;
 }
 
-#pragma mark - SKLruCacheSpiller
+#pragma mark - SKLruListSpiller
 
-- (void)onSpilled:(id)object forKey:(id<NSCopying>)key {
-    NSError *error;
-    [[NSFileManager defaultManager] removeItemAtURL:object error:&error];
-    
-    if(error) {
-        NSLog(@"Unable to remove cached file: %@", error);
-    }
+- (void)onSpilled:(id)object {
+    [_storage removeObject:object error:nil];
 }
 
 @end
