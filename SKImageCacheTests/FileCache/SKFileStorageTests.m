@@ -47,7 +47,7 @@
     [given([mockUrl1 absoluteString]) willReturn:mockUrlString1];
     
     [given([mockFileManager fileExistsAtPath:mockDirectory]) willReturnBool:YES];
-    [given([mockMapper fileUrlForObject:mockObject1]) willReturn:mockUrl1];
+    [given([mockMapper fileUrlForKey:mockObject1]) willReturn:mockUrl1];
     
     [given([mockDownloader downloadTo:mockUrl1]) willReturnBool:YES];
 }
@@ -60,7 +60,7 @@
 - (void)test_shouldFileExistReturnFalse_whenObjectIsNotYetDownloaded {
     [given([mockFileManager fileExistsAtPath:mockUrlString1]) willReturnBool:NO];
     
-    BOOL fileExist = [storage fileExistForObject:mockObject1];
+    BOOL fileExist = [storage fileExistForKey:mockObject1];
     
     assert(!fileExist);
 }
@@ -68,7 +68,7 @@
 - (void)test_shouldFileExistReturnTrue_whenObjectIsDownloaded {
     [given([mockFileManager fileExistsAtPath:mockUrlString1]) willReturnBool:YES];
     
-    BOOL fileExist = [storage fileExistForObject:mockObject1];
+    BOOL fileExist = [storage fileExistForKey:mockObject1];
     
     assert(fileExist);
 }
@@ -76,7 +76,7 @@
 - (void)test_shouldPerformDownload_whenObjectIsNotYetDownloaded {
     [given([mockFileManager fileExistsAtPath:mockUrlString1]) willReturnBool:NO];
     
-    NSURL *url = [storage fileUrlForObject:mockObject1];
+    NSURL *url = [storage fileUrlForKey:mockObject1];
     
     [verify(mockDownloader) downloadTo:mockUrl1];
     assertThat(url, isNot(nilValue()));
@@ -86,7 +86,7 @@
 - (void)test_shouldNotPerformDownload_whenObjectIsAlreadyDownloaded {
     [given([mockFileManager fileExistsAtPath:mockUrlString1]) willReturnBool:YES];
     
-    NSURL *url = [storage fileUrlForObject:mockObject1];
+    NSURL *url = [storage fileUrlForKey:mockObject1];
     
     [verifyCount(mockDownloader, never()) downloadTo:mockUrl1];
     assertThat(url, isNot(nilValue()));
@@ -96,7 +96,7 @@
 - (void)test_shouldDeleteFile_whenRemoveObjectIsCalled {
     [given([mockFileManager fileExistsAtPath:mockUrlString1]) willReturnBool:YES];
     
-    [storage removeObject:mockObject1 error:0];
+    [storage removeFileForKey:mockObject1 error:0];
     
     [verify(mockFileManager) removeItemAtURL:mockUrl1 error:0];
 }

@@ -26,17 +26,22 @@
     return self;
 }
 
-- (nullable NSURL *)fileUrlForObject:(nonnull id)object {
-    NSURL *fileUrl = [_storage fileUrlForObject:object];
-    [_list touchObject:object];
+- (nullable NSURL *)fileUrlForKey:(nonnull id<NSCopying>)key {
+    NSURL *fileUrl = [_storage fileUrlForKey:key];
+    [_list touchObject:key];
     
     return fileUrl;
+}
+
+- (void)removeFileUrlForKey:(nonnull id<NSCopying>)key {
+    [_list removeObject:key];
+    [_storage removeFileForKey:key error:nil];
 }
 
 #pragma mark - SKLruListSpiller
 
 - (void)onSpilled:(id)object {
-    [_storage removeObject:object error:nil];
+    [_storage removeFileForKey:object error:nil];
 }
 
 @end

@@ -14,6 +14,7 @@
 
 - (nonnull instancetype)initWithCapacity:(NSUInteger)capacity andStorage:(nonnull SKFileStorage *)storage;
 
-- (nullable NSURL *)fileUrlForObject:(nonnull id)object;
+- (nullable NSURL *)fileUrlForKey:(nonnull id<NSCopying>)key;
+- (void)removeFileUrlForKey:(nonnull id<NSCopying>)key;
 
 @end

@@ -29,15 +29,15 @@
     return self;
 }
 
-- (BOOL)fileExistForObject:(nonnull id)object {
-    NSURL *fileUrl = [_mapper fileUrlForObject:object];
+- (BOOL)fileExistForKey:(nonnull id<NSCopying>)key {
+    NSURL *fileUrl = [_mapper fileUrlForKey:key];
     return [_fileManager fileExistsAtPath:[fileUrl absoluteString]];
 }
 
-- (nullable NSURL *)fileUrlForObject:(nonnull id)object {
-    NSURL *fileUrl = [_mapper fileUrlForObject:object];
+- (nullable NSURL *)fileUrlForKey:(nonnull id<NSCopying>)key {
+    NSURL *fileUrl = [_mapper fileUrlForKey:key];
     
-    if([self fileExistForObject:object]) {
+    if([self fileExistForKey:key]) {
         return fileUrl;
     } else {
         if([_downloader downloadTo:fileUrl]) {
@@ -47,8 +47,8 @@
     return nil;
 }
 
-- (void)removeObject:(nonnull id)object error:(NSError * _Nullable * _Nullable)error {
-    NSURL *fileUrl = [_mapper fileUrlForObject:object];
+- (void)removeFileForKey:(nonnull id<NSCopying>)key error:(NSError * _Nullable * _Nullable)error {
+    NSURL *fileUrl = [_mapper fileUrlForKey:key];
     
     if([_fileManager fileExistsAtPath:[fileUrl absoluteString]]) {
         [_fileManager removeItemAtURL:fileUrl error:error];

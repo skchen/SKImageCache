@@ -10,7 +10,7 @@
 
 @protocol SKFileStorageMapper <NSObject>
 
-- (nonnull NSURL *)fileUrlForObject:(nonnull id)object;
+- (nonnull NSURL *)fileUrlForKey:(nonnull id<NSCopying>)key;
 
 @end
 
@@ -24,8 +24,8 @@
 
 - (nonnull instancetype)initWithFileManager:(nonnull NSFileManager *)fileManager andMapper:(nonnull id <SKFileStorageMapper>)mapper andDownloader:(nonnull id<SKFileStorageDownloader>)downloader;
 
-- (BOOL)fileExistForObject:(nonnull id)object;
-- (nullable NSURL *)fileUrlForObject:(nonnull id)object;
-- (void)removeObject:(nonnull id)object error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)fileExistForKey:(nonnull id<NSCopying>)key;
+- (nullable NSURL *)fileUrlForKey:(nonnull id<NSCopying>)key;
+- (void)removeFileForKey:(nonnull id<NSCopying>)key error:(NSError * _Nullable * _Nullable)error;
 
 @end

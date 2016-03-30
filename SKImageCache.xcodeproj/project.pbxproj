@@ -19,6 +19,9 @@
 		826803E21CABCC8900C8B952 /* SKFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 826803DE1CABCC8900C8B952 /* SKFileStorage.m */; };
 		826803E61CABCC9300C8B952 /* SKFileCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 826803E41CABCC9300C8B952 /* SKFileCacheTests.m */; };
 		826803E71CABCC9300C8B952 /* SKFileStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 826803E51CABCC9300C8B952 /* SKFileStorageTests.m */; };
+		826803EC1CABD1C200C8B952 /* SKImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 826803EA1CABD1C200C8B952 /* SKImageCache.h */; };
+		826803ED1CABD1C200C8B952 /* SKImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 826803EB1CABD1C200C8B952 /* SKImageCache.m */; };
+		826803EF1CABD1DE00C8B952 /* SKImageCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 826803EE1CABD1DE00C8B952 /* SKImageCacheTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,9 @@
 		826803DE1CABCC8900C8B952 /* SKFileStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFileStorage.m; sourceTree = "<group>"; };
 		826803E41CABCC9300C8B952 /* SKFileCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFileCacheTests.m; sourceTree = "<group>"; };
 		826803E51CABCC9300C8B952 /* SKFileStorageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFileStorageTests.m; sourceTree = "<group>"; };
+		826803EA1CABD1C200C8B952 /* SKImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKImageCache.h; sourceTree = "<group>"; };
+		826803EB1CABD1C200C8B952 /* SKImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKImageCache.m; sourceTree = "<group>"; };
+		826803EE1CABD1DE00C8B952 /* SKImageCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKImageCacheTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +98,7 @@
 		826803921CAA258E00C8B952 /* SKImageCache */ = {
 			isa = PBXGroup;
 			children = (
+				826803E81CABD1A000C8B952 /* ImageCache */,
 				826803DA1CABCC8900C8B952 /* FileCache */,
 				826803931CAA258E00C8B952 /* SKImageCacheFramework.h */,
 				826803AB1CAA4D0700C8B952 /* frameworks */,
@@ -103,6 +110,7 @@
 		8268039E1CAA258F00C8B952 /* SKImageCacheTests */ = {
 			isa = PBXGroup;
 			children = (
+				826803E91CABD1AA00C8B952 /* ImageCache */,
 				826803E31CABCC9300C8B952 /* FileCache */,
 				826803AC1CAA4D1500C8B952 /* frameworks */,
 				826803A11CAA258F00C8B952 /* Info.plist */,
@@ -147,6 +155,23 @@
 			path = FileCache;
 			sourceTree = "<group>";
 		};
+		826803E81CABD1A000C8B952 /* ImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				826803EA1CABD1C200C8B952 /* SKImageCache.h */,
+				826803EB1CABD1C200C8B952 /* SKImageCache.m */,
+			);
+			path = ImageCache;
+			sourceTree = "<group>";
+		};
+		826803E91CABD1AA00C8B952 /* ImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				826803EE1CABD1DE00C8B952 /* SKImageCacheTests.m */,
+			);
+			path = ImageCache;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -155,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				826803941CAA258E00C8B952 /* SKImageCacheFramework.h in Headers */,
+				826803EC1CABD1C200C8B952 /* SKImageCache.h in Headers */,
 				826803DF1CABCC8900C8B952 /* SKFileCache.h in Headers */,
 				826803E11CABCC8900C8B952 /* SKFileStorage.h in Headers */,
 			);
@@ -293,6 +319,7 @@
 			files = (
 				826803E01CABCC8900C8B952 /* SKFileCache.m in Sources */,
 				826803E21CABCC8900C8B952 /* SKFileStorage.m in Sources */,
+				826803ED1CABD1C200C8B952 /* SKImageCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				826803E61CABCC9300C8B952 /* SKFileCacheTests.m in Sources */,
+				826803EF1CABD1DE00C8B952 /* SKImageCacheTests.m in Sources */,
 				826803E71CABCC9300C8B952 /* SKFileStorageTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
