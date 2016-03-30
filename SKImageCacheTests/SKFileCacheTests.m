@@ -43,9 +43,8 @@ static NSString *const kKeyDownloadData1 = @"key1";
 static NSString *const kKeyDownloadData2 = @"key2";
 static NSString *const kKeyDownloadData3 = @"key3";
 
-@interface SKImageCacheTests : XCTestCase
+@interface SKFileCacheTests : XCTestCase
 
-@property(nonatomic, strong) SKLruCache *mockLruCache;
 @property(nonatomic, strong) SKMockMapper *mockMapper;
 @property(nonatomic, strong) SKMockDownloader *mockDownloader;
 
@@ -62,12 +61,10 @@ static NSString *const kKeyDownloadData3 = @"key3";
 
 @end
 
-@implementation SKImageCacheTests
+@implementation SKFileCacheTests
 
 - (void)setUp {
     [super setUp];
-    
-    _mockLruCache = mock([SKLruCache class]);
     
     _mockData1 = mock([NSData class]);
     _mockUrl1 = mock([NSURL class]);
@@ -82,7 +79,7 @@ static NSString *const kKeyDownloadData3 = @"key3";
     [given([_mockDownloader download:kKeyDownloadData2]) willReturn:_mockData2];
     [given([_mockDownloader download:kKeyDownloadData3]) willReturn:_mockData3];
     
-    _fileCache = [[SKFileCache alloc] initWithCache:_mockLruCache andMapper:^NSURL * _Nonnull(id<NSCopying>  _Nonnull key) {
+    _fileCache = [[SKFileCache alloc] initWithCapacity:2 andMapper:^NSURL * _Nonnull(id<NSCopying>  _Nonnull key) {
         return [_mockMapper get:key];
     } andDownloader:^NSData * _Nonnull(id<NSCopying>  _Nonnull key) {
         return [_mockDownloader download:key];
@@ -99,20 +96,18 @@ static NSString *const kKeyDownloadData3 = @"key3";
 
     [verify(_mockDownloader) download:kKeyDownloadData1];
     [verify(_mockData1) writeToURL:_mockUrl1 atomically:YES];
-    [verify(_mockLruCache) setObject:_mockUrl1 forKey:kKeyDownloadData1];
     assertThat(object, is(_mockUrl1));
 }
 
 - (void)test_shouldNotDownloadButGetData_whenDataIsCachedForSpecificKey {
-    [given([_mockLruCache objectForKey:kKeyDownloadData1]) willReturn:_mockUrl1];
-    
     id object = [_fileCache objectForKey:kKeyDownloadData1];
     
-    [verifyCount(_mockDownloader, never()) download:kKeyDownloadData1];
-    [verifyCount(_mockData1, never()) writeToURL:_mockUrl1 atomically:YES];
-    [verifyCount(_mockLruCache, never()) setObject:_mockUrl1 forKey:kKeyDownloadData1];
-    [verify(_mockLruCache) objectForKey:kKeyDownloadData1];
+    id objectr = [_fileCache objectForKey:kKeyDownloadData1];
+    
+    [verifyCount(_mockDownloader, times(1)) download:kKeyDownloadData1];
+    [verifyCount(_mockData1, times(1)) writeToURL:_mockUrl1 atomically:YES];
     assertThat(object, is(_mockUrl1));
+    assertThat(objectr, is(_mockUrl1));
 }
 
 @end
