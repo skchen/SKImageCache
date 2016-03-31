@@ -20,7 +20,7 @@
 @implementation SKImageCacheTests {
     SKImageCache *imageCache;
     
-    SKLruCache *mockLruCache;
+    SKLruTable *mockLruTable;
     SKFileCache *mockFileCache;
     
     id<SKImageCacheDecoder> mockImageCacheDecoder;
@@ -33,7 +33,7 @@
 - (void)setUp {
     [super setUp];
     
-    mockLruCache = mock([SKLruCache class]);
+    mockLruTable = mock([SKLruTable class]);
     mockFileCache = mock([SKFileCache class]);
     
     mockImageCacheDecoder = mockProtocol(@protocol(SKImageCacheDecoder));
@@ -46,7 +46,7 @@
     
     [given([mockImageCacheDecoder imageForFileUrl:mockUrl1]) willReturn:mockImage1];
     
-    imageCache = [[SKImageCache alloc] initWithLruCache:mockLruCache andFileCache:mockFileCache andDecoder:mockImageCacheDecoder];
+    imageCache = [[SKImageCache alloc] initWithLruTable:mockLruTable andFileCache:mockFileCache andDecoder:mockImageCacheDecoder];
 }
 
 - (void)tearDown {
@@ -55,24 +55,24 @@
 }
 
 - (void)test_shouldDecodeImage_whenImageNotYetInCache {
-    [given([mockLruCache objectForKey:mockKey1]) willReturn:nil];
+    [given([mockLruTable objectForKey:mockKey1]) willReturn:nil];
     
     UIImage *image = [imageCache imageForKey:mockKey1];
     
     [verify(mockFileCache) fileUrlForKey:mockKey1];
     [verify(mockImageCacheDecoder) imageForFileUrl:mockUrl1];
-    [verify(mockLruCache) setObject:mockImage1 forKey:mockKey1];
+    [verify(mockLruTable) setObject:mockImage1 forKey:mockKey1];
     assertThat(image, is(mockImage1));
 }
 
 - (void)test_shouldNotDecodeImage_whenImageAlreadyInCache {
-    [given([mockLruCache objectForKey:mockKey1]) willReturn:mockImage1];
+    [given([mockLruTable objectForKey:mockKey1]) willReturn:mockImage1];
     
     UIImage *image = [imageCache imageForKey:mockKey1];
     
     [verifyCount(mockFileCache, never()) fileUrlForKey:mockKey1];
     [verifyCount(mockImageCacheDecoder, never()) imageForFileUrl:mockUrl1];
-    [verifyCount(mockLruCache, never()) setObject:mockImage1 forKey:mockKey1];
+    [verifyCount(mockLruTable, never()) setObject:mockImage1 forKey:mockKey1];
     assertThat(image, is(mockImage1));
 }
 
@@ -80,7 +80,7 @@
     [imageCache removeImageForKey:mockKey1];
     
     [verify(mockFileCache) removeFileUrlForKey:mockKey1];
-    [verify(mockLruCache) removeObjectForKey:mockKey1];
+    [verify(mockLruTable) removeObjectForKey:mockKey1];
 }
 
 @end

@@ -21,7 +21,7 @@
 
 @interface SKImageCache : NSObject
 
-- (nonnull instancetype)initWithLruCache:(nonnull SKLruCache *)lruCache andFileCache:(nonnull SKFileCache *)fileCache andDecoder:(nonnull id<SKImageCacheDecoder>)decoder;
+- (nonnull instancetype)initWithLruTable:(nonnull SKLruTable *)lruTable andFileCache:(nonnull SKFileCache *)fileCache andDecoder:(nonnull id<SKImageCacheDecoder>)decoder;
 
 - (nullable UIImage *)imageForKey:(nonnull id<NSCopying>)key;
 - (void)removeImageForKey:(nonnull id<NSCopying>)key;

@@ -10,7 +10,7 @@
 
 @import SKUtils;
 
-@interface SKFileCache () <SKLruListSpiller>
+@interface SKFileCache () <SKLruListCoster, SKLruListSpiller>
 
 @property(nonatomic, strong, readonly, nonnull) SKLruList *list;
 @property(nonatomic, strong, readonly, nonnull) SKFileStorage *storage;
@@ -21,7 +21,7 @@
 
 - (nonnull instancetype)initWithCapacity:(NSUInteger)capacity andStorage:(nonnull SKFileStorage *)storage {
     self = [super init];
-    _list = [[SKLruList alloc] initWithCapacity:capacity andSpiller:self];
+    _list = [[SKLruList alloc] initWithConstraint:capacity andStorage:[[NSMutableArray alloc] init] andCoster:self andSpiller:self];
     _storage = storage;
     return self;
 }
@@ -36,6 +36,12 @@
 - (void)removeFileUrlForKey:(nonnull id<NSCopying>)key {
     [_list removeObject:key];
     [_storage removeFileForKey:key error:nil];
+}
+
+#pragma mark - SKLruListCoster
+
+- (NSUInteger)costForObject:(id)object {
+    return 1;
 }
 
 #pragma mark - SKLruListSpiller

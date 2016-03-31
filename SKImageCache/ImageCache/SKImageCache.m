@@ -11,7 +11,7 @@
 @interface SKImageCache ()
 
 @property(nonatomic, assign, readonly) NSUInteger capacity;
-@property(nonatomic, strong, readonly, nonnull) SKLruCache *lruCache;
+@property(nonatomic, strong, readonly, nonnull) SKLruTable *lruTable;
 @property(nonatomic, strong, readonly, nonnull) SKFileCache *fileCache;
 @property(nonatomic, weak, readonly) id<SKImageCacheDecoder> decoder;
 
@@ -19,10 +19,10 @@
 
 @implementation SKImageCache
 
-- (nonnull instancetype)initWithLruCache:(nonnull SKLruCache *)lruCache andFileCache:(nonnull SKFileCache *)fileCache andDecoder:(nonnull id<SKImageCacheDecoder>)decoder {
+- (nonnull instancetype)initWithLruTable:(nonnull SKLruTable *)lruTable andFileCache:(nonnull SKFileCache *)fileCache andDecoder:(nonnull id<SKImageCacheDecoder>)decoder {
     self = [super init];
     
-    _lruCache = lruCache;
+    _lruTable = lruTable;
     _fileCache = fileCache;
     _decoder = decoder;
     
@@ -30,19 +30,19 @@
 }
 
 - (nullable UIImage *)imageForKey:(nonnull id<NSCopying>)key {
-    UIImage *image = [_lruCache objectForKey:key];
+    UIImage *image = [_lruTable objectForKey:key];
     
     if(!image) {
         NSURL *url = [_fileCache fileUrlForKey:key];
         image = [_decoder imageForFileUrl:url];
-        [_lruCache setObject:image forKey:key];
+        [_lruTable setObject:image forKey:key];
     }
     
     return image;
 }
 
 - (void)removeImageForKey:(nonnull id<NSCopying>)key {
-    [_lruCache removeObjectForKey:key];
+    [_lruTable removeObjectForKey:key];
     [_fileCache removeFileUrlForKey:key];
 }
 
