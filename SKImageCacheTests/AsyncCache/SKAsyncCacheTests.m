@@ -22,7 +22,6 @@
     
     SKLruTable *mockLruTable;
     SKTaskQueue *taskQueue;
-    SKTaskQueue *mockTaskQueue;
     id<SKAsyncCacheDelegate> mockDelegate;
     
     id<NSCopying> mockKey1;
@@ -36,7 +35,6 @@
     [super setUp];
     
     mockLruTable = mock([SKLruTable class]);
-    mockTaskQueue = mock([SKTaskQueue class]);
     mockDelegate = mockProtocol(@protocol(SKAsyncCacheDelegate));
     
     taskQueue = [[SKTaskQueue alloc] initWithOrderedDictionary:[[SKOrderedDictionary alloc] init]];
