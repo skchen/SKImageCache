@@ -14,6 +14,4 @@
 
 @interface SKAsyncFileCache : SKAsyncCache
 
-- (nonnull instancetype)initWithStorage:(nonnull SKLruStorage *)lruStorage andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nonnull id<SKAsyncCacheDelegate>)delegate;
-
 @end

@@ -16,16 +16,13 @@
 
 @implementation SKAsyncFileCache
 
-- (nonnull instancetype)initWithLruTable:(SKLruTable *)lruTable andLoader:(id<SKAsyncCacheLoader>)loader andDelegate:(id<SKAsyncCacheDelegate>)delegate {
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:@"-initWithLruTable:andLoader:andDelegate is not a valid initializer for the class SKAsyncFileCache"
-                                 userInfo:nil];
-}
+- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(id<SKLruCoster>)coster andLoader:(id<SKAsyncCacheLoader>)loader andDelegate:(id<SKAsyncCacheDelegate>)delegate {
 
-- (nonnull instancetype)initWithStorage:(nonnull SKLruStorage *)lruStorage andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nonnull id<SKAsyncCacheDelegate>)delegate {
-    
-    self = [super initWithLruTable:lruStorage andLoader:loader andDelegate:delegate];
-    
+    self = [super init];
+    _lruTable = [[SKLruStorage alloc] initWithConstraint:constraint andCoster:coster andSpiller:nil];
+    _loader = loader;
+    _taskQueue = [[SKTaskQueue alloc] init];
+    _delegate = delegate;
     return self;
 }
 

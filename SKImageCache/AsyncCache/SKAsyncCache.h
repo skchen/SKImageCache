@@ -41,7 +41,7 @@ typedef void (^FailureBlock)(NSError* _Nonnull error);
 @property(nonatomic, weak, readonly, nullable) id<SKAsyncCacheLoader> loader;
 @property(nonatomic, weak, nullable) id<SKAsyncCacheDelegate> delegate;
 
-- (nonnull instancetype)initWithLruTable:(nonnull SKLruTable *)lruTable andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nonnull id<SKAsyncCacheDelegate>)delegate;
+- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate;
 
 - (nullable id)objectForKey:(nonnull id<NSCopying>)key;
 - (void)cacheObjectForKey:(nonnull id<NSCopying>)key;

@@ -16,13 +16,10 @@
 
 @implementation SKAsyncImageCache
 
-- (nonnull instancetype) initWithLruTable:(nonnull SKLruTable *)lruTable andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nonnull id<SKAsyncCacheDelegate>)delegate andFileCache:(nonnull SKAsyncFileCache *)fileCache {
-    
-    self = [super initWithLruTable:lruTable andLoader:loader andDelegate:delegate];
-    
+- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andFileCache:(nonnull SKAsyncFileCache *)fileCache {
+    self = [super initWithConstraint:constraint andCoster:coster andLoader:loader andDelegate:delegate];
     _fileCache = fileCache;
     _fileCache.delegate = self;
-    
     return self;
 }
 

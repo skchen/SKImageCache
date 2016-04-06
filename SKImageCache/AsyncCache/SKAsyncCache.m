@@ -16,9 +16,10 @@
 
 @implementation SKAsyncCache
 
-- (nonnull instancetype)initWithLruTable:(nonnull SKLruTable *)lruTable andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nonnull id<SKAsyncCacheDelegate>)delegate {
+- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate {
+
     self = [super init];
-    _lruTable = lruTable;
+    _lruTable = [[SKLruTable alloc] initWithConstraint:constraint andCoster:coster andSpiller:nil];
     _loader = loader;
     _taskQueue = [[SKTaskQueue alloc] init];
     _delegate = delegate;

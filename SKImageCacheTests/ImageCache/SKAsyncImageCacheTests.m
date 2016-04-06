@@ -21,6 +21,7 @@
     SKAsyncImageCache *asyncImageCache;
     
     SKLruTable *mockLruTable;
+    id<SKLruCoster> mockCoster;
     id<SKAsyncCacheDelegate> mockDelegate;
     SKAsyncFileCache *mockFileCache;
     
@@ -37,6 +38,7 @@
     [super setUp];
     
     mockLruTable = mock([SKLruTable class]);
+    mockCoster = mockProtocol(@protocol(SKLruCoster));
     mockDelegate = mockProtocol(@protocol(SKAsyncCacheDelegate));
     mockFileCache = mock([SKAsyncFileCache class]);
     
@@ -52,7 +54,8 @@
     [given([mockLocalUrl2 copyWithZone:nil]) willReturn:mockLocalUrl2];
     mockError2 = mock([NSError class]);
     
-    asyncImageCache = [[SKAsyncImageCache alloc] initWithLruTable:mockLruTable andLoader:self andDelegate:mockDelegate andFileCache:mockFileCache];
+    asyncImageCache = [[SKAsyncImageCache alloc] initWithConstraint:1 andCoster:mockCoster andLoader:self andDelegate:mockDelegate andFileCache:mockFileCache];
+    [asyncImageCache setValue:mockLruTable forKey:@"lruTable"];
     
     [given([mockFileCache delegate]) willReturn:asyncImageCache];
     
