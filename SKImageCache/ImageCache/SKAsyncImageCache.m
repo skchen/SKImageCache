@@ -16,9 +16,9 @@
 
 @implementation SKAsyncImageCache
 
-- (nonnull instancetype) initWithLruTable:(nonnull SKLruTable *)lruTable andLoader:(nonnull id<SKAsyncCacheLoader>)loader andTaskQueue:(nonnull SKTaskQueue *)taskQueue andDelegate:(nonnull id<SKAsyncCacheDelegate>)delegate andFileCache:(nonnull SKAsyncFileCache *)fileCache {
+- (nonnull instancetype) initWithLruTable:(nonnull SKLruTable *)lruTable andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nonnull id<SKAsyncCacheDelegate>)delegate andFileCache:(nonnull SKAsyncFileCache *)fileCache {
     
-    self = [super initWithLruTable:lruTable andLoader:loader andTaskQueue:taskQueue andDelegate:delegate];
+    self = [super initWithLruTable:lruTable andLoader:loader andDelegate:delegate];
     
     _fileCache = fileCache;
     _fileCache.delegate = self;

@@ -10,15 +10,17 @@
 
 @interface SKAsyncCache ()
 
+@property(nonatomic, strong, readonly, nonnull) SKTaskQueue *taskQueue;
+
 @end
 
 @implementation SKAsyncCache
 
-- (nonnull instancetype)initWithLruTable:(nonnull SKLruTable *)lruTable andLoader:(nonnull id<SKAsyncCacheLoader>)loader andTaskQueue:(nonnull SKTaskQueue *)taskQueue andDelegate:(nonnull id<SKAsyncCacheDelegate>)delegate {
+- (nonnull instancetype)initWithLruTable:(nonnull SKLruTable *)lruTable andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nonnull id<SKAsyncCacheDelegate>)delegate {
     self = [super init];
     _lruTable = lruTable;
     _loader = loader;
-    _taskQueue = taskQueue;
+    _taskQueue = [[SKTaskQueue alloc] init];
     _delegate = delegate;
     return self;
 }
@@ -41,13 +43,10 @@
 
 - (SKTask *)taskToLoadObjectForKey:(id<NSCopying>)key {
     return [[SKTask alloc] initWithId:key block:^{
-        NSLog(@"SKTask");
         [_loader loadObjectForKey:key success:^(id  _Nonnull object) {
-            NSLog(@"SKTask Success");
             [_lruTable setObject:object forKey:key];
             [_delegate asyncCache:self didCacheObject:object forKey:key];
         } failure:^(NSError * _Nonnull error) {
-            NSLog(@"SKTask Failed");
             [_delegate asyncCache:self failedToCacheObjectForKey:key withError:error];
         }];
     }];

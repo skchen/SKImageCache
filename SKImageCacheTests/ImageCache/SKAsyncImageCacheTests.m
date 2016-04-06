@@ -21,7 +21,6 @@
     SKAsyncImageCache *asyncImageCache;
     
     SKLruTable *mockLruTable;
-    SKTaskQueue *taskQueue;
     id<SKAsyncCacheDelegate> mockDelegate;
     SKAsyncFileCache *mockFileCache;
     
@@ -41,8 +40,6 @@
     mockDelegate = mockProtocol(@protocol(SKAsyncCacheDelegate));
     mockFileCache = mock([SKAsyncFileCache class]);
     
-    taskQueue = [[SKTaskQueue alloc] initWithOrderedDictionary:[[SKOrderedDictionary alloc] init]];
-    
     mockRemoteUrl1 = mock([NSURL class]);
     [given([mockRemoteUrl1 copyWithZone:nil]) willReturn:mockRemoteUrl1];
     mockLocalUrl1 = mock([NSURL class]);
@@ -55,7 +52,7 @@
     [given([mockLocalUrl2 copyWithZone:nil]) willReturn:mockLocalUrl2];
     mockError2 = mock([NSError class]);
     
-    asyncImageCache = [[SKAsyncImageCache alloc] initWithLruTable:mockLruTable andLoader:self andTaskQueue:taskQueue andDelegate:mockDelegate andFileCache:mockFileCache];
+    asyncImageCache = [[SKAsyncImageCache alloc] initWithLruTable:mockLruTable andLoader:self andDelegate:mockDelegate andFileCache:mockFileCache];
     
     [given([mockFileCache delegate]) willReturn:asyncImageCache];
     

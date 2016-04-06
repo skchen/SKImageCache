@@ -48,7 +48,7 @@
     [given([mockKey2 copyWithZone:nil]) willReturn:mockKey2];
     mockError2 = mock([NSError class]);
     
-    asyncFileCache = [[SKAsyncFileCache alloc] initWithStorage:mockLruStorage andLoader:self andTaskQueue:taskQueue andDelegate:mockDelegate];
+    asyncFileCache = [[SKAsyncFileCache alloc] initWithStorage:mockLruStorage andLoader:self andDelegate:mockDelegate];
 }
 
 - (void)tearDown {

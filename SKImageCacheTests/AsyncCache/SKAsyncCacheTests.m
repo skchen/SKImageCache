@@ -21,7 +21,6 @@
     SKAsyncCache *asyncCache;
     
     SKLruTable *mockLruTable;
-    SKTaskQueue *taskQueue;
     id<SKAsyncCacheDelegate> mockDelegate;
     
     id<NSCopying> mockKey1;
@@ -37,8 +36,6 @@
     mockLruTable = mock([SKLruTable class]);
     mockDelegate = mockProtocol(@protocol(SKAsyncCacheDelegate));
     
-    taskQueue = [[SKTaskQueue alloc] initWithOrderedDictionary:[[SKOrderedDictionary alloc] init]];
-    
     mockKey1 = mockProtocol(@protocol(NSCopying));
     [given([mockKey1 copyWithZone:nil]) willReturn:mockKey1];
     mockObject1 = mock([NSObject class]);
@@ -47,7 +44,7 @@
     [given([mockKey2 copyWithZone:nil]) willReturn:mockKey2];
     mockError2 = mock([NSError class]);
     
-    asyncCache = [[SKAsyncCache alloc] initWithLruTable:mockLruTable andLoader:self andTaskQueue:taskQueue andDelegate:mockDelegate];
+    asyncCache = [[SKAsyncCache alloc] initWithLruTable:mockLruTable andLoader:self andDelegate:mockDelegate];
 }
 
 - (void)tearDown {
