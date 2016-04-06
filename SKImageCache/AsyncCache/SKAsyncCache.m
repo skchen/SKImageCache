@@ -8,9 +8,15 @@
 
 #import "SKAsyncCache.h"
 
+NSString *const _Nonnull kNotificationAsyncCacheObjectCached = @"com.github.skchen.SKImageCache.SKAsyncCache.objectCached";
+NSString *const _Nonnull kNotificationAsyncCacheObjectCacheFailed = @"com.github.skchen.SKImageCache.SKAsyncCache.objectCacheFailed";
+
 @interface SKAsyncCache ()
 
 @property(nonatomic, strong, readonly, nonnull) SKTaskQueue *taskQueue;
+
+- (void)notifyObject:(id)object forKey:(id<NSCopying>)key;
+- (void)notifyError:(NSError *)error forKey:(id<NSCopying>)key;
 
 @end
 
@@ -20,7 +26,7 @@
     return [[SKTaskQueue alloc] init];
 }
 
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue {
+- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andTaskQueue:(nullable SKTaskQueue *)taskQueue {
 
     self = [super init];
     _lruTable = [[SKLruTable alloc] initWithConstraint:constraint andCoster:coster andSpiller:nil];
@@ -32,7 +38,6 @@
         _taskQueue = [SKAsyncCache defaultTaskQueue];
     }
     
-    _delegate = delegate;
     return self;
 }
 
@@ -56,11 +61,35 @@
     return [[SKTask alloc] initWithId:key block:^{
         [_loader loadObjectForKey:key success:^(id  _Nonnull object) {
             [_lruTable setObject:object forKey:key];
-            [_delegate asyncCache:self didCacheObject:object forKey:key];
+            [self notifyObject:object forKey:key];
         } failure:^(NSError * _Nonnull error) {
-            [_delegate asyncCache:self failedToCacheObjectForKey:key withError:error];
+            [self notifyError:error forKey:key];
         }];
     }];
+}
+
+- (void)notifyObject:(id)object forKey:(id<NSCopying>)key {
+    if([_delegate respondsToSelector:@selector(asyncCache:didCacheObject:forKey:)]) {
+        [_delegate asyncCache:self didCacheObject:object forKey:key];
+    }
+    
+    if(_notificationCenter) {
+        NSDictionary *userInfo = @{@"key": key, @"object": object};
+        
+        [_notificationCenter postNotificationName:kNotificationAsyncCacheObjectCached object:self userInfo:userInfo];
+    }
+}
+
+- (void)notifyError:(NSError *)error forKey:(id<NSCopying>)key {
+    if([_delegate respondsToSelector:@selector(asyncCache:failedToCacheObjectForKey:withError:)]) {
+        [_delegate asyncCache:self failedToCacheObjectForKey:key withError:error];
+    }
+    
+    if(_notificationCenter) {
+        NSDictionary *userInfo = @{@"key": key, @"error": error};
+        
+        [_notificationCenter postNotificationName:kNotificationAsyncCacheObjectCacheFailed object:self userInfo:userInfo];
+    }
 }
 
 @end

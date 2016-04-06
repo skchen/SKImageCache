@@ -18,21 +18,23 @@
 
 @implementation SKAsyncImageCache
 
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue {
+- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andTaskQueue:(nullable SKTaskQueue *)taskQueue {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:@"-init without FileCache is not a valid initializer for the class SKLruStorage"
                                  userInfo:nil];
 }
 
-- (nonnull instancetype)initWithFileCache:(nonnull SKAsyncFileCache *)fileCache andConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue {
+- (nonnull instancetype)initWithFileCache:(nonnull SKAsyncFileCache *)fileCache andConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andTaskQueue:(nullable SKTaskQueue *)taskQueue {
     
     if(!loader) {
         loader = [[SKAsyncImageCacheDecoder alloc] initWithAsyncFileCache:fileCache];
     }
     
-    self = [super initWithConstraint:constraint andCoster:coster andLoader:loader andDelegate:delegate andTaskQueue:taskQueue];
+    self = [super initWithConstraint:constraint andCoster:coster andLoader:loader andTaskQueue:taskQueue];
+    
     _fileCache = fileCache;
     _fileCache.delegate = self;
+    
     return self;
 }
 

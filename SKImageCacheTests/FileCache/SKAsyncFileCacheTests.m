@@ -50,7 +50,8 @@
     [given([mockKey2 copyWithZone:nil]) willReturn:mockKey2];
     mockError2 = mock([NSError class]);
     
-    asyncFileCache = [[SKAsyncFileCache alloc] initWithConstraint:1 andCoster:mockCoster andLoader:self andDelegate:mockDelegate andTaskQueue:taskQueue];
+    asyncFileCache = [[SKAsyncFileCache alloc] initWithConstraint:1 andCoster:mockCoster andLoader:self andTaskQueue:taskQueue];
+    asyncFileCache.delegate = mockDelegate;
     [asyncFileCache setValue:mockLruStorage forKey:@"lruTable"];
 }
 

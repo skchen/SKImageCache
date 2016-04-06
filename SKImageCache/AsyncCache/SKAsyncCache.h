@@ -11,6 +11,9 @@
 @import SKUtils;
 @import SKTaskUtils;
 
+extern NSString *const _Nonnull kNotificationAsyncCacheObjectCached;
+extern NSString *const _Nonnull kNotificationAsyncCacheObjectCacheFailed;
+
 @class SKAsyncCache;
 
 typedef void (^SuccessBlock)(id _Nonnull object);
@@ -39,9 +42,10 @@ typedef void (^FailureBlock)(NSError* _Nonnull error);
 
 @property(nonatomic, strong, readonly, nonnull) SKLruTable *lruTable;
 @property(nonatomic, strong, readonly, nonnull) id<SKAsyncCacheLoader> loader;
+@property(nonatomic, strong, nullable) NSNotificationCenter *notificationCenter;
 @property(nonatomic, weak, nullable) id<SKAsyncCacheDelegate> delegate;
 
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue;
+- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andTaskQueue:(nullable SKTaskQueue *)taskQueue;
 
 - (nullable id)objectForKey:(nonnull id<NSCopying>)key;
 - (void)cacheObjectForKey:(nonnull id<NSCopying>)key;

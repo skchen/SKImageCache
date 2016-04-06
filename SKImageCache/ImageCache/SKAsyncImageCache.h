@@ -12,6 +12,6 @@
 
 @interface SKAsyncImageCache : SKAsyncCache
 
-- (nonnull instancetype)initWithFileCache:(nonnull SKAsyncFileCache *)fileCache andConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue;
+- (nonnull instancetype)initWithFileCache:(nonnull SKAsyncFileCache *)fileCache andConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andTaskQueue:(nullable SKTaskQueue *)taskQueue;
 
 @end
