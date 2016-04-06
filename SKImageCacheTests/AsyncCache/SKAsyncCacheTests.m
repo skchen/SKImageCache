@@ -23,6 +23,7 @@
     SKLruTable *mockLruTable;
     id<SKLruCoster> mockCoster;
     id<SKAsyncCacheDelegate> mockDelegate;
+    SKTaskQueue *taskQueue;
     
     id<NSCopying> mockKey1;
     id mockObject1;
@@ -37,6 +38,7 @@
     mockLruTable = mock([SKLruTable class]);
     mockCoster = mockProtocol(@protocol(SKLruCoster));
     mockDelegate = mockProtocol(@protocol(SKAsyncCacheDelegate));
+    taskQueue = [[SKTaskQueue alloc] init];
     
     mockKey1 = mockProtocol(@protocol(NSCopying));
     [given([mockKey1 copyWithZone:nil]) willReturn:mockKey1];
@@ -46,7 +48,7 @@
     [given([mockKey2 copyWithZone:nil]) willReturn:mockKey2];
     mockError2 = mock([NSError class]);
     
-    asyncCache = [[SKAsyncCache alloc] initWithConstraint:1 andCoster:mockCoster andLoader:self andDelegate:mockDelegate];
+    asyncCache = [[SKAsyncCache alloc] initWithConstraint:1 andCoster:mockCoster andLoader:self andDelegate:mockDelegate andTaskQueue:taskQueue];
     [asyncCache setValue:mockLruTable forKey:@"lruTable"];
 }
 
