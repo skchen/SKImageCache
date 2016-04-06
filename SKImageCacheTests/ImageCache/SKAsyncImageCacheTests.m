@@ -57,7 +57,7 @@
     [given([mockLocalUrl2 copyWithZone:nil]) willReturn:mockLocalUrl2];
     mockError2 = mock([NSError class]);
     
-    asyncImageCache = [[SKAsyncImageCache alloc] initWithConstraint:1 andCoster:mockCoster andLoader:self andDelegate:mockDelegate andTaskQueue:taskQueue andFileCache:mockFileCache];
+    asyncImageCache = [[SKAsyncImageCache alloc] initWithFileCache:mockFileCache andConstraint:1 andCoster:mockCoster andLoader:self andDelegate:mockDelegate andTaskQueue:taskQueue];
     [asyncImageCache setValue:mockLruTable forKey:@"lruTable"];
     
     [given([mockFileCache delegate]) willReturn:asyncImageCache];
