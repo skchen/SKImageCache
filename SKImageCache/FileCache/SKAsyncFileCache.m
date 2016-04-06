@@ -16,12 +16,22 @@
 
 @implementation SKAsyncFileCache
 
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(id<SKLruCoster>)coster andLoader:(id<SKAsyncCacheLoader>)loader andDelegate:(id<SKAsyncCacheDelegate>)delegate {
++ (SKTaskQueue *)defaultTaskQueue {
+    return [[SKTaskQueue alloc] init];
+}
+
+- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue {
 
     self = [super init];
     _lruTable = [[SKLruStorage alloc] initWithConstraint:constraint andCoster:coster andSpiller:nil];
     _loader = loader;
-    _taskQueue = [[SKTaskQueue alloc] init];
+    
+    if(taskQueue) {
+        _taskQueue = taskQueue;
+    } else {
+        _taskQueue = [SKAsyncFileCache defaultTaskQueue];
+    }
+    
     _delegate = delegate;
     return self;
 }
