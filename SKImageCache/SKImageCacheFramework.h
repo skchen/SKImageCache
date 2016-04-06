@@ -16,4 +16,9 @@ FOUNDATION_EXPORT const unsigned char SKImageCacheVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <SKImageCache/PublicHeader.h>
 
-
+#import <SKImageCache/SKImageCache.h>
+#import <SKImageCache/SKAsyncImageCache.h>
+#import <SKImageCache/SKFileCache.h>
+#import <SKImageCache/SKFileStorage.h>
+#import <SKImageCache/SKAsyncFileCache.h>
+#import <SKImageCache/SKAsyncCache.h>
