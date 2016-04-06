@@ -23,9 +23,11 @@
     return self;
 }
 
+- (nullable id)objectForKey:(nonnull id<NSCopying>)key {
+    return [_lruTable objectForKey:key];
+}
+
 - (void)cacheObjectForKey:(id<NSCopying>)key {
-    NSLog(@"cacheObjectForKey:%@", key);
-    
     id object = [_lruTable objectForKey:key];
     if(object) {
         [_delegate asyncCache:self didCacheObject:object forKey:key];

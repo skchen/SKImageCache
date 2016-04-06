@@ -54,6 +54,22 @@
     [super tearDown];
 }
 
+- (void)test_shouldGetNil_whenObjectIsNotCached {
+    [given([mockLruTable objectForKey:mockKey1]) willReturn:nil];
+    
+    id object = [asyncCache objectForKey:mockKey1];
+    
+    assertThat(object, is(nilValue()));
+}
+
+- (void)test_shouldGetObject_whenObjectIsCached {
+    [given([mockLruTable objectForKey:mockKey1]) willReturn:mockObject1];
+    
+    id object = [asyncCache objectForKey:mockKey1];
+    
+    assertThat(object, is(mockObject1));
+}
+
 - (void)test_shouldLoadObject_whenObjectIsNotCached {
     [given([mockLruTable objectForKey:mockKey1]) willReturn:nil];
     
