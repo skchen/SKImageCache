@@ -8,6 +8,8 @@
 
 #import "SKAsyncFileCache.h"
 
+#import "SKAsyncFileCacheDownloader.h"
+
 @interface SKAsyncFileCache ()
 
 @property(nonatomic, strong, readonly, nonnull) SKAsyncCache *asyncCache;
@@ -20,11 +22,17 @@
     return [[SKTaskQueue alloc] init];
 }
 
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue {
+- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue {
 
     self = [super init];
+    
     _lruTable = [[SKLruStorage alloc] initWithConstraint:constraint andCoster:coster andSpiller:nil];
-    _loader = loader;
+    
+    if(loader) {
+        _loader = loader;
+    } else {
+        _loader = [[SKAsyncFileCacheDownloader alloc] init];
+    }
     
     if(taskQueue) {
         _taskQueue = taskQueue;

@@ -8,6 +8,8 @@
 
 #import "SKAsyncImageCache.h"
 
+#import "SKAsyncImageCacheDecoder.h"
+
 @interface SKAsyncImageCache () <SKAsyncCacheDelegate>
 
 @property(nonatomic, strong, readonly, nonnull) SKAsyncFileCache *fileCache;
@@ -16,32 +18,22 @@
 
 @implementation SKAsyncImageCache
 
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue {
+- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:@"-init without FileCache is not a valid initializer for the class SKLruStorage"
                                  userInfo:nil];
 }
 
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue andFileCache:(nonnull SKAsyncFileCache *)fileCache {
+- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue andFileCache:(nonnull SKAsyncFileCache *)fileCache {
+    
+    if(!loader) {
+        loader = [[SKAsyncImageCacheDecoder alloc] initWithAsyncFileCache:_fileCache];
+    }
+    
     self = [super initWithConstraint:constraint andCoster:coster andLoader:loader andDelegate:delegate andTaskQueue:taskQueue];
     _fileCache = fileCache;
     _fileCache.delegate = self;
     return self;
-}
-
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andFileCache:(nonnull SKAsyncFileCache *)fileCache {
-    
-    return [self initWithConstraint:constraint andCoster:nil andLoader:loader andDelegate:delegate andTaskQueue:nil andFileCache:fileCache];
-}
-
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue andFileCache:(nonnull SKAsyncFileCache *)fileCache {
-    
-    return [self initWithConstraint:constraint andCoster:nil andLoader:loader andDelegate:delegate andTaskQueue:taskQueue andFileCache:fileCache];
-}
-
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andFileCache:(nonnull SKAsyncFileCache *)fileCache {
-    
-    return [self initWithConstraint:constraint andCoster:coster andLoader:loader andDelegate:delegate andTaskQueue:nil andFileCache:fileCache];
 }
 
 #pragma mark - Override

@@ -20,7 +20,7 @@
     return [[SKTaskQueue alloc] init];
 }
 
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue {
+- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue {
 
     self = [super init];
     _lruTable = [[SKLruTable alloc] initWithConstraint:constraint andCoster:coster andSpiller:nil];
@@ -34,21 +34,6 @@
     
     _delegate = delegate;
     return self;
-}
-
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate {
-    
-    return [self initWithConstraint:constraint andCoster:nil andLoader:loader andDelegate:delegate andTaskQueue:nil];
-}
-
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue {
-    
-    return [self initWithConstraint:constraint andCoster:nil andLoader:loader andDelegate:delegate andTaskQueue:taskQueue];
-}
-
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate {
-    
-    return [self initWithConstraint:constraint andCoster:coster andLoader:loader andDelegate:delegate andTaskQueue:nil];
 }
 
 - (nullable id)objectForKey:(nonnull id<NSCopying>)key {

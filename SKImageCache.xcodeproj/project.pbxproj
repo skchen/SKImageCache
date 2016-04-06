@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		824C231E1CB52AD500352A87 /* SKAsyncImageCacheDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 824C231C1CB52AD500352A87 /* SKAsyncImageCacheDecoder.h */; };
+		824C231F1CB52AD500352A87 /* SKAsyncImageCacheDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 824C231D1CB52AD500352A87 /* SKAsyncImageCacheDecoder.m */; };
+		824C23261CB52E6100352A87 /* SKAsyncFileCacheDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 824C23241CB52E6000352A87 /* SKAsyncFileCacheDownloader.h */; };
+		824C23271CB52E6100352A87 /* SKAsyncFileCacheDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 824C23251CB52E6100352A87 /* SKAsyncFileCacheDownloader.m */; };
 		826803941CAA258E00C8B952 /* SKImageCacheFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 826803931CAA258E00C8B952 /* SKImageCacheFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8268039B1CAA258F00C8B952 /* SKImageCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826803901CAA258E00C8B952 /* SKImageCache.framework */; };
 		826803B51CAA52B400C8B952 /* OCHamcrest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826803B31CAA52B400C8B952 /* OCHamcrest.framework */; };
@@ -46,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		824C231C1CB52AD500352A87 /* SKAsyncImageCacheDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKAsyncImageCacheDecoder.h; sourceTree = "<group>"; };
+		824C231D1CB52AD500352A87 /* SKAsyncImageCacheDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKAsyncImageCacheDecoder.m; sourceTree = "<group>"; };
+		824C23241CB52E6000352A87 /* SKAsyncFileCacheDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKAsyncFileCacheDownloader.h; sourceTree = "<group>"; };
+		824C23251CB52E6100352A87 /* SKAsyncFileCacheDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKAsyncFileCacheDownloader.m; sourceTree = "<group>"; };
 		826803901CAA258E00C8B952 /* SKImageCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SKImageCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		826803931CAA258E00C8B952 /* SKImageCacheFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKImageCacheFramework.h; sourceTree = "<group>"; };
 		826803951CAA258E00C8B952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -170,6 +178,8 @@
 				826803DE1CABCC8900C8B952 /* SKFileStorage.m */,
 				828D19B01CB4A1A800F4CFC4 /* SKAsyncFileCache.h */,
 				828D19B11CB4A1A800F4CFC4 /* SKAsyncFileCache.m */,
+				824C23241CB52E6000352A87 /* SKAsyncFileCacheDownloader.h */,
+				824C23251CB52E6100352A87 /* SKAsyncFileCacheDownloader.m */,
 			);
 			path = FileCache;
 			sourceTree = "<group>";
@@ -191,6 +201,8 @@
 				826803EB1CABD1C200C8B952 /* SKImageCache.m */,
 				828D19AA1CB4903B00F4CFC4 /* SKAsyncImageCache.h */,
 				828D19AB1CB4903B00F4CFC4 /* SKAsyncImageCache.m */,
+				824C231C1CB52AD500352A87 /* SKAsyncImageCacheDecoder.h */,
+				824C231D1CB52AD500352A87 /* SKAsyncImageCacheDecoder.m */,
 			);
 			path = ImageCache;
 			sourceTree = "<group>";
@@ -230,8 +242,10 @@
 			files = (
 				826803941CAA258E00C8B952 /* SKImageCacheFramework.h in Headers */,
 				828D19751CAD621F00F4CFC4 /* SKAsyncCache.h in Headers */,
+				824C231E1CB52AD500352A87 /* SKAsyncImageCacheDecoder.h in Headers */,
 				828D19AC1CB4903B00F4CFC4 /* SKAsyncImageCache.h in Headers */,
 				826803EC1CABD1C200C8B952 /* SKImageCache.h in Headers */,
+				824C23261CB52E6100352A87 /* SKAsyncFileCacheDownloader.h in Headers */,
 				828D19B21CB4A1A800F4CFC4 /* SKAsyncFileCache.h in Headers */,
 				826803DF1CABCC8900C8B952 /* SKFileCache.h in Headers */,
 				826803E11CABCC8900C8B952 /* SKFileStorage.h in Headers */,
@@ -377,6 +391,8 @@
 				828D19B31CB4A1A800F4CFC4 /* SKAsyncFileCache.m in Sources */,
 				828D19AD1CB4903B00F4CFC4 /* SKAsyncImageCache.m in Sources */,
 				826803ED1CABD1C200C8B952 /* SKImageCache.m in Sources */,
+				824C23271CB52E6100352A87 /* SKAsyncFileCacheDownloader.m in Sources */,
+				824C231F1CB52AD500352A87 /* SKAsyncImageCacheDecoder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

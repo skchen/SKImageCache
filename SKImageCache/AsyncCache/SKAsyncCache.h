@@ -33,18 +33,15 @@ typedef void (^FailureBlock)(NSError* _Nonnull error);
     @protected
     SKLruTable *_lruTable;
     SKTaskQueue *_taskQueue;
-    __weak id<SKAsyncCacheLoader> _loader;
+    id<SKAsyncCacheLoader> _loader;
     __weak id<SKAsyncCacheDelegate> _delegate;
 }
 
 @property(nonatomic, strong, readonly, nonnull) SKLruTable *lruTable;
-@property(nonatomic, weak, readonly, nullable) id<SKAsyncCacheLoader> loader;
+@property(nonatomic, strong, readonly, nonnull) id<SKAsyncCacheLoader> loader;
 @property(nonatomic, weak, nullable) id<SKAsyncCacheDelegate> delegate;
 
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate;
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue;
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate;
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nonnull id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue;
+- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andDelegate:(nullable id<SKAsyncCacheDelegate>)delegate andTaskQueue:(nullable SKTaskQueue *)taskQueue;
 
 - (nullable id)objectForKey:(nonnull id<NSCopying>)key;
 - (void)cacheObjectForKey:(nonnull id<NSCopying>)key;
