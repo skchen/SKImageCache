@@ -10,13 +10,6 @@
 
 @interface SKAsyncCache ()
 
-@property(nonatomic, strong, readonly, nonnull) SKLruTable *lruTable;
-@property(nonatomic, weak, readonly, nullable) id<SKAsyncCacheLoader> loader;
-@property(nonatomic, strong, readonly, nonnull) SKTaskQueue *taskQueue;
-@property(nonatomic, weak, readonly, nullable) id<SKAsyncCacheDelegate> delegate;
-
-- (SKTask *)taskToLoadObjectForKey:(id<NSCopying>)key;
-
 @end
 
 @implementation SKAsyncCache
@@ -31,6 +24,8 @@
 }
 
 - (void)cacheObjectForKey:(id<NSCopying>)key {
+    NSLog(@"cacheObjectForKey:%@", key);
+    
     id object = [_lruTable objectForKey:key];
     if(object) {
         [_delegate asyncCache:self didCacheObject:object forKey:key];
@@ -44,10 +39,13 @@
 
 - (SKTask *)taskToLoadObjectForKey:(id<NSCopying>)key {
     return [[SKTask alloc] initWithId:key block:^{
+        NSLog(@"SKTask");
         [_loader loadObjectForKey:key success:^(id  _Nonnull object) {
+            NSLog(@"SKTask Success");
             [_lruTable setObject:object forKey:key];
             [_delegate asyncCache:self didCacheObject:object forKey:key];
         } failure:^(NSError * _Nonnull error) {
+            NSLog(@"SKTask Failed");
             [_delegate asyncCache:self failedToCacheObjectForKey:key withError:error];
         }];
     }];

@@ -29,10 +29,25 @@ typedef void (^FailureBlock)(NSError* _Nonnull error);
 
 @end
 
-@interface SKAsyncCache : NSObject
+@interface SKAsyncCache : NSObject {
+    @protected
+    SKLruTable *_lruTable;
+    SKTaskQueue *_taskQueue;
+    __weak id<SKAsyncCacheLoader> _loader;
+    __weak id<SKAsyncCacheDelegate> _delegate;
+}
+
+@property(nonatomic, strong, readonly, nonnull) SKLruTable *lruTable;
+@property(nonatomic, weak, readonly, nullable) id<SKAsyncCacheLoader> loader;
+@property(nonatomic, strong, readonly, nonnull) SKTaskQueue *taskQueue;
+@property(nonatomic, weak, nullable) id<SKAsyncCacheDelegate> delegate;
 
 - (nonnull instancetype)initWithLruTable:(nonnull SKLruTable *)lruTable andLoader:(nonnull id<SKAsyncCacheLoader>)loader andTaskQueue:(nonnull SKTaskQueue *)taskQueue andDelegate:(nonnull id<SKAsyncCacheDelegate>)delegate;
 
 - (void)cacheObjectForKey:(nonnull id<NSCopying>)key;
+
+#pragma mark - Protected
+
+- (nonnull SKTask *)taskToLoadObjectForKey:(nonnull id<NSCopying>)key;
 
 @end
