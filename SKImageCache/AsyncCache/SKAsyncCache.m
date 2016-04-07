@@ -59,12 +59,18 @@ NSString *const _Nonnull kNotificationAsyncCacheObjectCacheFailed = @"com.github
 
 - (SKTask *)taskToLoadObjectForKey:(id<NSCopying>)key {
     return [[SKTask alloc] initWithId:key block:^{
+        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+        
         [_loader loadObjectForKey:key success:^(id  _Nonnull object) {
             [_lruTable setObject:object forKey:key];
             [self notifyObject:object forKey:key];
+            dispatch_semaphore_signal(sema);
         } failure:^(NSError * _Nonnull error) {
             [self notifyError:error forKey:key];
+            dispatch_semaphore_signal(sema);
         }];
+        
+        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
     }];
 }
 

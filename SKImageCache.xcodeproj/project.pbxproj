@@ -6,7 +6,41 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		8225865F1CB6F01800E01E7D /* SKImageCache-Universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 822586601CB6F01800E01E7D /* Build configuration list for PBXAggregateTarget "SKImageCache-Universal" */;
+			buildPhases = (
+				822586651CB6F02B00E01E7D /* ShellScript */,
+			);
+			dependencies = (
+				822586641CB6F02800E01E7D /* PBXTargetDependency */,
+			);
+			name = "SKImageCache-Universal";
+			productName = "SKImageCache-Universal";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
+		822586431CB6EF4100E01E7D /* SKFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 826803DC1CABCC8900C8B952 /* SKFileCache.m */; };
+		822586441CB6EF4100E01E7D /* SKAsyncCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 828D19741CAD621F00F4CFC4 /* SKAsyncCache.m */; };
+		822586451CB6EF4100E01E7D /* SKFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 826803DE1CABCC8900C8B952 /* SKFileStorage.m */; };
+		822586461CB6EF4100E01E7D /* SKAsyncFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 828D19B11CB4A1A800F4CFC4 /* SKAsyncFileCache.m */; };
+		822586471CB6EF4100E01E7D /* SKAsyncImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 828D19AB1CB4903B00F4CFC4 /* SKAsyncImageCache.m */; };
+		822586481CB6EF4100E01E7D /* SKImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 826803EB1CABD1C200C8B952 /* SKImageCache.m */; };
+		822586491CB6EF4100E01E7D /* SKAsyncFileCacheDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 824C23251CB52E6100352A87 /* SKAsyncFileCacheDownloader.m */; };
+		8225864A1CB6EF4100E01E7D /* SKAsyncImageCacheDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 824C231D1CB52AD500352A87 /* SKAsyncImageCacheDecoder.m */; };
+		8225864C1CB6EF4100E01E7D /* SKTaskUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828D19791CAD6C0100F4CFC4 /* SKTaskUtils.framework */; };
+		8225864D1CB6EF4100E01E7D /* SKUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826803B81CAA5B4900C8B952 /* SKUtils.framework */; };
+		8225864F1CB6EF4100E01E7D /* SKImageCacheFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 826803931CAA258E00C8B952 /* SKImageCacheFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		822586501CB6EF4100E01E7D /* SKAsyncCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 828D19731CAD621F00F4CFC4 /* SKAsyncCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		822586511CB6EF4100E01E7D /* SKAsyncImageCacheDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 824C231C1CB52AD500352A87 /* SKAsyncImageCacheDecoder.h */; };
+		822586521CB6EF4100E01E7D /* SKAsyncImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 828D19AA1CB4903B00F4CFC4 /* SKAsyncImageCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		822586531CB6EF4100E01E7D /* SKImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 826803EA1CABD1C200C8B952 /* SKImageCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		822586541CB6EF4100E01E7D /* SKAsyncFileCacheDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 824C23241CB52E6000352A87 /* SKAsyncFileCacheDownloader.h */; };
+		822586551CB6EF4100E01E7D /* SKAsyncFileCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 828D19B01CB4A1A800F4CFC4 /* SKAsyncFileCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		822586561CB6EF4100E01E7D /* SKFileCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 826803DB1CABCC8900C8B952 /* SKFileCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		822586571CB6EF4100E01E7D /* SKFileStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 826803DD1CABCC8900C8B952 /* SKFileStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		824C231E1CB52AD500352A87 /* SKAsyncImageCacheDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 824C231C1CB52AD500352A87 /* SKAsyncImageCacheDecoder.h */; };
 		824C231F1CB52AD500352A87 /* SKAsyncImageCacheDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 824C231D1CB52AD500352A87 /* SKAsyncImageCacheDecoder.m */; };
 		824C23261CB52E6100352A87 /* SKAsyncFileCacheDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 824C23241CB52E6000352A87 /* SKAsyncFileCacheDownloader.h */; };
@@ -40,6 +74,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		822586631CB6F02800E01E7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 826803871CAA258E00C8B952 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 822586411CB6EF4100E01E7D;
+			remoteInfo = "SKImageCache-iOS7";
+		};
 		8268039C1CAA258F00C8B952 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 826803871CAA258E00C8B952 /* Project object */;
@@ -50,6 +91,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8225865D1CB6EF4100E01E7D /* SKImageCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SKImageCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		824C231C1CB52AD500352A87 /* SKAsyncImageCacheDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKAsyncImageCacheDecoder.h; sourceTree = "<group>"; };
 		824C231D1CB52AD500352A87 /* SKAsyncImageCacheDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKAsyncImageCacheDecoder.m; sourceTree = "<group>"; };
 		824C23241CB52E6000352A87 /* SKAsyncFileCacheDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKAsyncFileCacheDownloader.h; sourceTree = "<group>"; };
@@ -84,6 +126,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8225864B1CB6EF4100E01E7D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8225864C1CB6EF4100E01E7D /* SKTaskUtils.framework in Frameworks */,
+				8225864D1CB6EF4100E01E7D /* SKUtils.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8268038C1CAA258E00C8B952 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -122,6 +173,7 @@
 			children = (
 				826803901CAA258E00C8B952 /* SKImageCache.framework */,
 				8268039A1CAA258F00C8B952 /* SKImageCacheTests.xctest */,
+				8225865D1CB6EF4100E01E7D /* SKImageCache.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -236,6 +288,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		8225864E1CB6EF4100E01E7D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8225864F1CB6EF4100E01E7D /* SKImageCacheFramework.h in Headers */,
+				822586501CB6EF4100E01E7D /* SKAsyncCache.h in Headers */,
+				822586511CB6EF4100E01E7D /* SKAsyncImageCacheDecoder.h in Headers */,
+				822586521CB6EF4100E01E7D /* SKAsyncImageCache.h in Headers */,
+				822586531CB6EF4100E01E7D /* SKImageCache.h in Headers */,
+				822586541CB6EF4100E01E7D /* SKAsyncFileCacheDownloader.h in Headers */,
+				822586551CB6EF4100E01E7D /* SKAsyncFileCache.h in Headers */,
+				822586561CB6EF4100E01E7D /* SKFileCache.h in Headers */,
+				822586571CB6EF4100E01E7D /* SKFileStorage.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8268038D1CAA258E00C8B952 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -255,6 +323,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		822586411CB6EF4100E01E7D /* SKImageCache-iOS7 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8225865A1CB6EF4100E01E7D /* Build configuration list for PBXNativeTarget "SKImageCache-iOS7" */;
+			buildPhases = (
+				822586421CB6EF4100E01E7D /* Sources */,
+				8225864B1CB6EF4100E01E7D /* Frameworks */,
+				8225864E1CB6EF4100E01E7D /* Headers */,
+				822586581CB6EF4100E01E7D /* Resources */,
+				822586591CB6EF4100E01E7D /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SKImageCache-iOS7";
+			productName = SKImageCache;
+			productReference = 8225865D1CB6EF4100E01E7D /* SKImageCache.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		8268038F1CAA258E00C8B952 /* SKImageCache */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 826803A41CAA258F00C8B952 /* Build configuration list for PBXNativeTarget "SKImageCache" */;
@@ -302,6 +389,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = SK;
 				TargetAttributes = {
+					8225865F1CB6F01800E01E7D = {
+						CreatedOnToolsVersion = 7.3;
+					};
 					8268038F1CAA258E00C8B952 = {
 						CreatedOnToolsVersion = 7.2.1;
 					};
@@ -324,11 +414,20 @@
 			targets = (
 				8268038F1CAA258E00C8B952 /* SKImageCache */,
 				826803991CAA258F00C8B952 /* SKImageCacheTests */,
+				822586411CB6EF4100E01E7D /* SKImageCache-iOS7 */,
+				8225865F1CB6F01800E01E7D /* SKImageCache-Universal */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		822586581CB6EF4100E01E7D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8268038E1CAA258E00C8B952 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -346,6 +445,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		822586591CB6EF4100E01E7D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SKUtils.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SKTaskUtils.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		822586651CB6F02B00E01E7D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "######################\n# Options\n######################\n\nREVEAL_ARCHIVE_IN_FINDER=false\n\nFRAMEWORK_NAME=\"${PROJECT_NAME}\"\n\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework\"\n\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\"\n\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\"\n\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${FRAMEWORK_NAME}.framework\"\n\n\n######################\n# Build Frameworks\n######################\n\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -scheme ${PROJECT_NAME} -sdk iphonesimulator -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator 2>&1\n\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -scheme ${PROJECT_NAME} -sdk iphoneos -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphoneos 2>&1\n\n######################\n# Create directory for universal\n######################\n\nrm -rf \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${FRAMEWORK}\"\n\n\n######################\n# Copy files Framework\n######################\n\ncp -r \"${DEVICE_LIBRARY_PATH}/.\" \"${FRAMEWORK}\"\n\n\n######################\n# Make an universal binary\n######################\n\nlipo \"${SIMULATOR_LIBRARY_PATH}/${FRAMEWORK_NAME}\" \"${DEVICE_LIBRARY_PATH}/${FRAMEWORK_NAME}\" -create -output \"${FRAMEWORK}/${FRAMEWORK_NAME}\" | echo\n\n# For Swift framework, Swiftmodule needs to be copied in the universal framework\nif [ -d \"${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\ncp -f ${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\n                                                                      fi\n                                                                      \n                                                                      if [ -d \"${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\n                                                                      cp -f ${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\n                                                                      fi\n                                                                      \n                                                                      ######################\n                                                                      # On Release, copy the result to release directory\n                                                                      ######################\n                                                                      OUTPUT_DIR=\"${PROJECT_DIR}/Output/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\n                                                                      \n                                                                      rm -rf \"$OUTPUT_DIR\"\n                                                                      mkdir -p \"$OUTPUT_DIR\"\n                                                                      \n                                                                      cp -r \"${FRAMEWORK}\" \"$OUTPUT_DIR\"\n                                                                      \n                                                                      if [ ${REVEAL_ARCHIVE_IN_FINDER} = true ]; then\n                                                                      open \"${OUTPUT_DIR}/\"\n                                                                      fi";
+		};
 		826803B71CAA52BB00C8B952 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -381,6 +508,21 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		822586421CB6EF4100E01E7D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				822586431CB6EF4100E01E7D /* SKFileCache.m in Sources */,
+				822586441CB6EF4100E01E7D /* SKAsyncCache.m in Sources */,
+				822586451CB6EF4100E01E7D /* SKFileStorage.m in Sources */,
+				822586461CB6EF4100E01E7D /* SKAsyncFileCache.m in Sources */,
+				822586471CB6EF4100E01E7D /* SKAsyncImageCache.m in Sources */,
+				822586481CB6EF4100E01E7D /* SKImageCache.m in Sources */,
+				822586491CB6EF4100E01E7D /* SKAsyncFileCacheDownloader.m in Sources */,
+				8225864A1CB6EF4100E01E7D /* SKAsyncImageCacheDecoder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8268038B1CAA258E00C8B952 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -412,6 +554,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		822586641CB6F02800E01E7D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 822586411CB6EF4100E01E7D /* SKImageCache-iOS7 */;
+			targetProxy = 822586631CB6F02800E01E7D /* PBXContainerItemProxy */;
+		};
 		8268039D1CAA258F00C8B952 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8268038F1CAA258E00C8B952 /* SKImageCache */;
@@ -420,6 +567,66 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		8225865B1CB6EF4100E01E7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SKImageCache/frameworks",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SKImageCache/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "$(SRCROOT)/Modules/module.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.skchen.SKImageCache;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		8225865C1CB6EF4100E01E7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SKImageCache/frameworks",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SKImageCache/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "$(SRCROOT)/Modules/module.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.skchen.SKImageCache;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		822586611CB6F01800E01E7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		822586621CB6F01800E01E7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		826803A21CAA258F00C8B952 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -581,6 +788,23 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8225865A1CB6EF4100E01E7D /* Build configuration list for PBXNativeTarget "SKImageCache-iOS7" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8225865B1CB6EF4100E01E7D /* Debug */,
+				8225865C1CB6EF4100E01E7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		822586601CB6F01800E01E7D /* Build configuration list for PBXAggregateTarget "SKImageCache-Universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				822586611CB6F01800E01E7D /* Debug */,
+				822586621CB6F01800E01E7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		8268038A1CAA258E00C8B952 /* Build configuration list for PBXProject "SKImageCache" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
