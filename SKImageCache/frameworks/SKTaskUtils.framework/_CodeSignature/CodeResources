@@ -4,42 +4,6 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Frameworks/SKUtils.framework/Headers/SKLruCache.h</key>
-		<data>
-		49YDzrWZhUD7aUd8y2roEZGMBlc=
-		</data>
-		<key>Frameworks/SKUtils.framework/Headers/SKLruList.h</key>
-		<data>
-		ep6dYLxFlXgqLUojo0kjStafmJQ=
-		</data>
-		<key>Frameworks/SKUtils.framework/Headers/SKLruStorage.h</key>
-		<data>
-		HTuGox4ZqPmGUBxSKWZSYoYSF4I=
-		</data>
-		<key>Frameworks/SKUtils.framework/Headers/SKLruTable.h</key>
-		<data>
-		kdCvqrJUQUlqbeKf06E7IuPhY40=
-		</data>
-		<key>Frameworks/SKUtils.framework/Headers/SKOrderedDictionary.h</key>
-		<data>
-		FtZpJ7wbVYrkromOolX6VaAhYyo=
-		</data>
-		<key>Frameworks/SKUtils.framework/Headers/SKUtils.h</key>
-		<data>
-		r1iKIUPyg8k9i1UTj6BSuXi/T9Y=
-		</data>
-		<key>Frameworks/SKUtils.framework/Info.plist</key>
-		<data>
-		QqmkRnQ4J77iZyYINpyLphxi57Y=
-		</data>
-		<key>Frameworks/SKUtils.framework/SKUtils</key>
-		<data>
-		BUPfoJuMMNWrc4c+d+B0Cb6kvjk=
-		</data>
-		<key>Frameworks/SKUtils.framework/_CodeSignature/CodeResources</key>
-		<data>
-		XmTteVw/bnIF6qYnDvixT8uk79A=
-		</data>
 		<key>Headers/SKTask.h</key>
 		<data>
 		XDl//sHHUApzfKAwaycdaiGxQHQ=
@@ -54,7 +18,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		OpC0ZX7kSZjyjy4U3CUgF5+/DPc=
+		82NPf/h2VXklJntNwbyFpl7wJVc=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -63,42 +27,6 @@
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Frameworks/SKUtils.framework/Headers/SKLruCache.h</key>
-		<data>
-		49YDzrWZhUD7aUd8y2roEZGMBlc=
-		</data>
-		<key>Frameworks/SKUtils.framework/Headers/SKLruList.h</key>
-		<data>
-		ep6dYLxFlXgqLUojo0kjStafmJQ=
-		</data>
-		<key>Frameworks/SKUtils.framework/Headers/SKLruStorage.h</key>
-		<data>
-		HTuGox4ZqPmGUBxSKWZSYoYSF4I=
-		</data>
-		<key>Frameworks/SKUtils.framework/Headers/SKLruTable.h</key>
-		<data>
-		kdCvqrJUQUlqbeKf06E7IuPhY40=
-		</data>
-		<key>Frameworks/SKUtils.framework/Headers/SKOrderedDictionary.h</key>
-		<data>
-		FtZpJ7wbVYrkromOolX6VaAhYyo=
-		</data>
-		<key>Frameworks/SKUtils.framework/Headers/SKUtils.h</key>
-		<data>
-		r1iKIUPyg8k9i1UTj6BSuXi/T9Y=
-		</data>
-		<key>Frameworks/SKUtils.framework/Info.plist</key>
-		<data>
-		QqmkRnQ4J77iZyYINpyLphxi57Y=
-		</data>
-		<key>Frameworks/SKUtils.framework/SKUtils</key>
-		<data>
-		BUPfoJuMMNWrc4c+d+B0Cb6kvjk=
-		</data>
-		<key>Frameworks/SKUtils.framework/_CodeSignature/CodeResources</key>
-		<data>
-		XmTteVw/bnIF6qYnDvixT8uk79A=
-		</data>
 		<key>Headers/SKTask.h</key>
 		<data>
 		XDl//sHHUApzfKAwaycdaiGxQHQ=
