@@ -41,6 +41,14 @@ NSString *const _Nonnull kNotificationAsyncCacheObjectCacheFailed = @"com.github
     return self;
 }
 
+- (BOOL)suspended {
+    return _taskQueue.suspended;
+}
+
+- (void)setSuspended:(BOOL)suspended {
+    _taskQueue.suspended = suspended;
+}
+
 - (nullable id)objectForKey:(nonnull id<NSCopying>)key {
     return [_lruTable objectForKey:key];
 }

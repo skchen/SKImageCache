@@ -38,7 +38,7 @@
     [super setUp];
     
     mockLruStorage = mock([SKLruStorage class]);
-    taskQueue = [[SKTaskQueue alloc] initWithOrderedDictionary:[[SKOrderedDictionary alloc] init]];
+    taskQueue = [[SKTaskQueue alloc] initWithOrderedDictionary:[[SKOrderedDictionary alloc] init] andConstraint:0 andQueue:nil];
     mockCoster = mockProtocol(@protocol(SKLruCoster));
     mockDelegate = mockProtocol(@protocol(SKAsyncCacheDelegate));
     

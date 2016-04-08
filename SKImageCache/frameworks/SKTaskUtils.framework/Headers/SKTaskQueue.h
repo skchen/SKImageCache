@@ -14,9 +14,9 @@
 @interface SKTaskQueue : NSObject
 
 @property(nonatomic, assign) BOOL suspended;
+@property(nonatomic, assign) NSUInteger constraint;
 
-- (nonnull instancetype)init;
-- (nonnull instancetype)initWithOrderedDictionary:(nullable SKOrderedDictionary *)taskArray;
+- (nonnull instancetype)initWithOrderedDictionary:(nullable SKOrderedDictionary *)taskArray andConstraint:(NSUInteger)constraint andQueue:(nullable dispatch_queue_t)queue;
 
 /**
  Insert task to the beginning of task queue

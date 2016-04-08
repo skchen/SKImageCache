@@ -49,6 +49,11 @@
     }
 }
 
+- (void)setSuspended:(BOOL)suspended {
+    _taskQueue.suspended = suspended;
+    _fileCache.suspended = suspended;
+}
+
 #pragma mark - SKAsyncCacheDelegate
 
 - (void)asyncCache:(SKAsyncCache *)cache didCacheObject:(id)object forKey:(id<NSCopying>)key {
