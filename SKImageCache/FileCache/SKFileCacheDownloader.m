@@ -6,9 +6,9 @@
 //  Copyright © 2016年 SK. All rights reserved.
 //
 
-#import "SKAsyncFileCacheDownloader.h"
+#import "SKFileCacheDownloader.h"
 
-@interface SKAsyncFileCacheDownloader ()
+@interface SKFileCacheDownloader ()
 
 @property(nonatomic, copy, readonly, nonnull) NSString *directoryPath;
 
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation SKAsyncFileCacheDownloader
+@implementation SKFileCacheDownloader
 
 - (nonnull instancetype)initWithDirectory:(nonnull NSString *)directoryPath {
     self = [super init];

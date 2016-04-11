@@ -1,8 +1,8 @@
 //
-//  SKImageCacheTests.m
-//  SKImageCacheTests
+//  SKAsyncFileCacheTests.m
+//  SKImageCache
 //
-//  Created by Shin-Kai Chen on 2016/3/29.
+//  Created by Shin-Kai Chen on 2016/4/1.
 //  Copyright © 2016年 SK. All rights reserved.
 //
 
@@ -15,60 +15,58 @@
 
 @import SKUtils;
 
-@interface SKFileCacheTests : XCTestCase
+@interface SKFileCacheTests : XCTestCase <SKAsyncCacheLoader>
 
 @end
 
 @implementation SKFileCacheTests {
-    SKFileCache *fileCache;
+    SKFileCache *asyncFileCache;
     
-    SKFileStorage *mockStorage;
+    SKLruStorage *mockLruStorage;
+    SKTaskQueue *taskQueue;
+    id<SKLruCoster> mockCoster;
+    id<SKAsyncCacheDelegate> mockDelegate;
     
     id<NSCopying> mockKey1;
-    NSURL *mockUrl1;
+    id mockObject1;
     
     id<NSCopying> mockKey2;
-    NSURL *mockUrl2;
+    NSError *mockError2;
 }
 
 - (void)setUp {
     [super setUp];
     
-    mockStorage = mock([SKFileStorage class]);
+    mockLruStorage = mock([SKLruStorage class]);
+    taskQueue = [[SKTaskQueue alloc] initWithOrderedDictionary:[[SKOrderedDictionary alloc] init] andConstraint:0 andQueue:nil];
+    mockCoster = mockProtocol(@protocol(SKLruCoster));
+    mockDelegate = mockProtocol(@protocol(SKAsyncCacheDelegate));
     
     mockKey1 = mockProtocol(@protocol(NSCopying));
-    mockUrl1 = mock([NSURL class]);
+    [given([mockKey1 copyWithZone:nil]) willReturn:mockKey1];
+    mockObject1 = mock([NSObject class]);
     
     mockKey2 = mockProtocol(@protocol(NSCopying));
-    mockUrl2 = mock([NSURL class]);
+    [given([mockKey2 copyWithZone:nil]) willReturn:mockKey2];
+    mockError2 = mock([NSError class]);
     
-    [given([mockStorage fileUrlForKey:mockKey1]) willReturn:mockUrl1];
-    [given([mockStorage fileUrlForKey:mockKey2]) willReturn:mockUrl2];
-    
-    fileCache = [[SKFileCache alloc] initWithCapacity:1 andStorage:mockStorage];
+    asyncFileCache = [[SKFileCache alloc] initWithConstraint:1 andCoster:mockCoster andLoader:self andTaskQueue:taskQueue];
+    asyncFileCache.delegate = mockDelegate;
+    [asyncFileCache setValue:mockLruStorage forKey:@"lruTable"];
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
-- (void)test_shouldGetUrl_whenObjectSpecified {
-    NSURL *url = [fileCache fileUrlForKey:mockKey1];
+#pragma mark - SKAsyncCacheLoader
 
-    [verify(mockStorage) fileUrlForKey:mockKey1];
-    assertThat(url, is(mockUrl1));
-}
-
-- (void)test_shouldRemovePreviousObject_whenObjectSpilled {
-    NSURL *url1 = [fileCache fileUrlForKey:mockKey1];
-    NSURL *url2 = [fileCache fileUrlForKey:mockKey2];
-    
-    [verify(mockStorage) fileUrlForKey:mockKey1];
-    [verify(mockStorage) removeFileForKey:mockKey1 error:nil];
-    [verify(mockStorage) fileUrlForKey:mockKey2];
-    assertThat(url1, is(mockUrl1));
-    assertThat(url2, is(mockUrl2));
+- (void)loadObjectForKey:(id<NSCopying>)key success:(SuccessBlock)success failure:(FailureBlock)failure {
+    if(key==mockKey1) {
+        success(mockObject1);
+    } else if(key==mockKey2) {
+        failure(mockError2);
+    }
 }
 
 @end

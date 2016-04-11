@@ -10,7 +10,7 @@
 
 #import "SKAsyncCache.h"
 
-@interface SKAsyncFileCacheDownloader : NSObject<SKAsyncCacheLoader>
+@interface SKFileCacheDownloader : NSObject<SKAsyncCacheLoader>
 
 - (nonnull instancetype)initWithDirectory:(nonnull NSString *)directoryPath;
 

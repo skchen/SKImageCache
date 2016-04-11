@@ -2,19 +2,16 @@
 //  SKFileCache.h
 //  SKImageCache
 //
-//  Created by Shin-Kai Chen on 2016/3/29.
+//  Created by Shin-Kai Chen on 2016/4/1.
 //  Copyright © 2016年 SK. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import "SKFileStorage.h"
+#import "SKAsyncCache.h"
 
-@interface SKFileCache : NSObject
+@import SKUtils;
 
-- (nonnull instancetype)initWithCapacity:(NSUInteger)capacity andStorage:(nonnull SKFileStorage *)storage;
-
-- (nullable NSURL *)fileUrlForKey:(nonnull id<NSCopying>)key;
-- (void)removeFileUrlForKey:(nonnull id<NSCopying>)key;
+@interface SKFileCache : SKAsyncCache
 
 @end

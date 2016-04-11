@@ -1,8 +1,8 @@
 //
-//  SKImageCacheTests.m
+//  SKAsyncImageCacheTests.m
 //  SKImageCache
 //
-//  Created by Shin-Kai Chen on 2016/3/30.
+//  Created by Shin-Kai Chen on 2016/4/6.
 //  Copyright © 2016年 SK. All rights reserved.
 //
 
@@ -13,74 +13,110 @@
 @import OCHamcrest;
 @import OCMockito;
 
-@interface SKImageCacheTests : XCTestCase
+@interface SKImageCacheTests : XCTestCase<SKAsyncCacheLoader>
 
 @end
 
 @implementation SKImageCacheTests {
-    SKImageCache *imageCache;
+    SKImageCache *asyncImageCache;
     
     SKLruTable *mockLruTable;
+    id<SKLruCoster> mockCoster;
+    id<SKAsyncCacheDelegate> mockDelegate;
     SKFileCache *mockFileCache;
+    SKTaskQueue *taskQueue;
     
-    id<SKImageCacheDecoder> mockImageCacheDecoder;
-    
-    id<NSCopying> mockKey1;
-    NSURL *mockUrl1;
+    NSURL *mockRemoteUrl1;
+    NSURL *mockLocalUrl1;
     UIImage *mockImage1;
+    
+    NSURL *mockRemoteUrl2;
+    NSURL *mockLocalUrl2;
+    NSError *mockError2;
 }
 
 - (void)setUp {
     [super setUp];
     
     mockLruTable = mock([SKLruTable class]);
+    mockCoster = mockProtocol(@protocol(SKLruCoster));
+    mockDelegate = mockProtocol(@protocol(SKAsyncCacheDelegate));
     mockFileCache = mock([SKFileCache class]);
     
-    mockImageCacheDecoder = mockProtocol(@protocol(SKImageCacheDecoder));
+    taskQueue = [[SKTaskQueue alloc] init];
     
-    mockKey1 = mockProtocol(@protocol(NSCopying));
-    mockUrl1 = mock([NSURL class]);
+    mockRemoteUrl1 = mock([NSURL class]);
+    [given([mockRemoteUrl1 copyWithZone:nil]) willReturn:mockRemoteUrl1];
+    mockLocalUrl1 = mock([NSURL class]);
+    [given([mockLocalUrl1 copyWithZone:nil]) willReturn:mockLocalUrl1];
     mockImage1 = mock([UIImage class]);
     
-    [given([mockFileCache fileUrlForKey:mockKey1]) willReturn:mockUrl1];
+    mockRemoteUrl2 = mock([NSURL class]);
+    [given([mockRemoteUrl2 copyWithZone:nil]) willReturn:mockRemoteUrl2];
+    mockLocalUrl2 = mock([NSURL class]);
+    [given([mockLocalUrl2 copyWithZone:nil]) willReturn:mockLocalUrl2];
+    mockError2 = mock([NSError class]);
     
-    [given([mockImageCacheDecoder imageForFileUrl:mockUrl1]) willReturn:mockImage1];
+    asyncImageCache = [[SKImageCache alloc] initWithFileCache:mockFileCache andConstraint:1 andCoster:mockCoster andLoader:self andTaskQueue:taskQueue];
+    asyncImageCache.delegate = mockDelegate;
+    [asyncImageCache setValue:mockLruTable forKey:@"lruTable"];
     
-    imageCache = [[SKImageCache alloc] initWithLruTable:mockLruTable andFileCache:mockFileCache andDecoder:mockImageCacheDecoder];
+    [given([mockFileCache delegate]) willReturn:asyncImageCache];
+    
+    [givenVoid([mockFileCache cacheObjectForKey:mockRemoteUrl1]) willDo:^id(NSInvocation *invocation) {
+        [mockFileCache.delegate asyncCache:mockFileCache didCacheObject:mockLocalUrl1 forKey:mockRemoteUrl1];
+        return nil;
+    }];
+    
+    [givenVoid([mockFileCache cacheObjectForKey:mockRemoteUrl2]) willDo:^id(NSInvocation *invocation) {
+        [mockFileCache.delegate asyncCache:mockFileCache didCacheObject:mockLocalUrl2 forKey:mockRemoteUrl2];
+        return nil;
+    }];
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
-- (void)test_shouldDecodeImage_whenImageNotYetInCache {
-    [given([mockLruTable objectForKey:mockKey1]) willReturn:nil];
+- (void)test_shouldLoadObject_whenObjectIsNotCached {
+    [given([mockLruTable objectForKey:mockRemoteUrl1]) willReturn:nil];
     
-    UIImage *image = [imageCache imageForKey:mockKey1];
+    [asyncImageCache cacheObjectForKey:mockRemoteUrl1];
+    [NSThread sleepForTimeInterval:1];
     
-    [verify(mockFileCache) fileUrlForKey:mockKey1];
-    [verify(mockImageCacheDecoder) imageForFileUrl:mockUrl1];
-    [verify(mockLruTable) setObject:mockImage1 forKey:mockKey1];
-    assertThat(image, is(mockImage1));
+    [verify(mockFileCache) cacheObjectForKey:mockRemoteUrl1];
+    [verify(mockLruTable) setObject:mockImage1 forKey:mockRemoteUrl1];
+    [verify(mockDelegate) asyncCache:asyncImageCache didCacheObject:mockImage1 forKey:mockRemoteUrl1];
 }
 
-- (void)test_shouldNotDecodeImage_whenImageAlreadyInCache {
-    [given([mockLruTable objectForKey:mockKey1]) willReturn:mockImage1];
+- (void)test_shouldNotLoadObject_whenObjectIsCached {
+    [given([mockLruTable objectForKey:mockRemoteUrl1]) willReturn:mockImage1];
     
-    UIImage *image = [imageCache imageForKey:mockKey1];
+    [asyncImageCache cacheObjectForKey:mockRemoteUrl1];
+    [NSThread sleepForTimeInterval:1];
     
-    [verifyCount(mockFileCache, never()) fileUrlForKey:mockKey1];
-    [verifyCount(mockImageCacheDecoder, never()) imageForFileUrl:mockUrl1];
-    [verifyCount(mockLruTable, never()) setObject:mockImage1 forKey:mockKey1];
-    assertThat(image, is(mockImage1));
+    [verifyCount(mockFileCache, never()) cacheObjectForKey:mockRemoteUrl1];
+    [verifyCount(mockLruTable, never()) setObject:mockImage1 forKey:mockRemoteUrl1];
+    [verify(mockDelegate) asyncCache:asyncImageCache didCacheObject:mockImage1 forKey:mockRemoteUrl1];
 }
 
-- (void)test_shouldRemoveImageForKey {
-    [imageCache removeImageForKey:mockKey1];
+- (void)test_shouldGetError_whenObjectIsNotCachedAndUnableToLoad {
+    [given([mockLruTable objectForKey:mockRemoteUrl2]) willReturn:nil];
     
-    [verify(mockFileCache) removeFileUrlForKey:mockKey1];
-    [verify(mockLruTable) removeObjectForKey:mockKey1];
+    [asyncImageCache cacheObjectForKey:mockRemoteUrl2];
+    [NSThread sleepForTimeInterval:1];
+    
+    [verify(mockDelegate) asyncCache:asyncImageCache failedToCacheObjectForKey:mockRemoteUrl2 withError:mockError2];
+}
+
+#pragma mark - SKAsyncCacheLoader
+
+- (void)loadObjectForKey:(id<NSCopying>)key success:(SuccessBlock)success failure:(FailureBlock)failure {
+    if(key==mockRemoteUrl1) {
+        success(mockImage1);
+    } else if(key==mockRemoteUrl2) {
+        failure(mockError2);
+    }
 }
 
 @end

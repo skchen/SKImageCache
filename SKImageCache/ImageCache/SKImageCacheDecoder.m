@@ -1,22 +1,22 @@
 //
-//  SKAsyncImageCacheDefaultLoader.m
+//  SKImageCacheDefaultLoader.m
 //  SKImageCache
 //
 //  Created by Shin-Kai Chen on 2016/4/6.
 //  Copyright © 2016年 SK. All rights reserved.
 //
 
-#import "SKAsyncImageCacheDecoder.h"
+#import "SKImageCacheDecoder.h"
 
-@interface SKAsyncImageCacheDecoder ()
+@interface SKImageCacheDecoder ()
 
-@property(nonatomic, strong, readonly, nonnull) SKAsyncFileCache *asyncFileCache;
+@property(nonatomic, strong, readonly, nonnull) SKFileCache *asyncFileCache;
 
 @end
 
-@implementation SKAsyncImageCacheDecoder
+@implementation SKImageCacheDecoder
 
-- (nonnull instancetype)initWithAsyncFileCache:(nonnull SKAsyncFileCache *)asyncFileCache {
+- (nonnull instancetype)initWithAsyncFileCache:(nonnull SKFileCache *)asyncFileCache {
     self = [super init];
     _asyncFileCache = asyncFileCache;
     return self;

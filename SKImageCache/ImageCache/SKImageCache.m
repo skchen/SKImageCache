@@ -2,48 +2,68 @@
 //  SKImageCache.m
 //  SKImageCache
 //
-//  Created by Shin-Kai Chen on 2016/3/30.
+//  Created by Shin-Kai Chen on 2016/4/5.
 //  Copyright © 2016年 SK. All rights reserved.
 //
 
 #import "SKImageCache.h"
 
-@interface SKImageCache ()
+#import "SKImageCacheDecoder.h"
 
-@property(nonatomic, assign, readonly) NSUInteger capacity;
-@property(nonatomic, strong, readonly, nonnull) SKLruTable *lruTable;
+@interface SKImageCache () <SKAsyncCacheDelegate>
+
 @property(nonatomic, strong, readonly, nonnull) SKFileCache *fileCache;
-@property(nonatomic, weak, readonly) id<SKImageCacheDecoder> decoder;
 
 @end
 
 @implementation SKImageCache
 
-- (nonnull instancetype)initWithLruTable:(nonnull SKLruTable *)lruTable andFileCache:(nonnull SKFileCache *)fileCache andDecoder:(nonnull id<SKImageCacheDecoder>)decoder {
-    self = [super init];
+- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andTaskQueue:(nullable SKTaskQueue *)taskQueue {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:@"-init without FileCache is not a valid initializer for the class SKLruStorage"
+                                 userInfo:nil];
+}
+
+- (nonnull instancetype)initWithFileCache:(nonnull SKFileCache *)fileCache andConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andTaskQueue:(nullable SKTaskQueue *)taskQueue {
     
-    _lruTable = lruTable;
+    if(!loader) {
+        loader = [[SKImageCacheDecoder alloc] initWithAsyncFileCache:fileCache];
+    }
+    
+    self = [super initWithConstraint:constraint andCoster:coster andLoader:loader andTaskQueue:taskQueue];
+    
     _fileCache = fileCache;
-    _decoder = decoder;
+    _fileCache.delegate = self;
     
     return self;
 }
 
-- (nullable UIImage *)imageForKey:(nonnull id<NSCopying>)key {
-    UIImage *image = [_lruTable objectForKey:key];
-    
-    if(!image) {
-        NSURL *url = [_fileCache fileUrlForKey:key];
-        image = [_decoder imageForFileUrl:url];
-        [_lruTable setObject:image forKey:key];
+#pragma mark - Override
+
+- (void)cacheObjectForKey:(id<NSCopying>)key {
+    id object = [_lruTable objectForKey:key];
+    if(object) {
+        [_delegate asyncCache:self didCacheObject:object forKey:key];
+    } else {
+        [_fileCache cacheObjectForKey:key];
     }
-    
-    return image;
 }
 
-- (void)removeImageForKey:(nonnull id<NSCopying>)key {
-    [_lruTable removeObjectForKey:key];
-    [_fileCache removeFileUrlForKey:key];
+- (void)setSuspended:(BOOL)suspended {
+    _taskQueue.suspended = suspended;
+    _fileCache.suspended = suspended;
+}
+
+#pragma mark - SKAsyncCacheDelegate
+
+- (void)asyncCache:(SKAsyncCache *)cache didCacheObject:(id)object forKey:(id<NSCopying>)key {
+    
+    SKTask *task = [self taskToLoadObjectForKey:key];
+    [_taskQueue insertTask:task];
+}
+
+- (void)asyncCache:(SKAsyncCache *)cache failedToCacheObjectForKey:(id<NSCopying>)key withError:(NSError *)error {
+    [_delegate asyncCache:self failedToCacheObjectForKey:key withError:error];
 }
 
 @end

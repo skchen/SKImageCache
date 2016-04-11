@@ -2,52 +2,46 @@
 //  SKFileCache.m
 //  SKImageCache
 //
-//  Created by Shin-Kai Chen on 2016/3/29.
+//  Created by Shin-Kai Chen on 2016/4/1.
 //  Copyright © 2016年 SK. All rights reserved.
 //
 
 #import "SKFileCache.h"
 
-@import SKUtils;
+#import "SKFileCacheDownloader.h"
 
-@interface SKFileCache () <SKLruCoster, SKLruListSpiller>
+@interface SKFileCache ()
 
-@property(nonatomic, strong, readonly, nonnull) SKLruList *list;
-@property(nonatomic, strong, readonly, nonnull) SKFileStorage *storage;
+@property(nonatomic, strong, readonly, nonnull) SKAsyncCache *asyncCache;
 
 @end
 
 @implementation SKFileCache
 
-- (nonnull instancetype)initWithCapacity:(NSUInteger)capacity andStorage:(nonnull SKFileStorage *)storage {
++ (SKTaskQueue *)defaultTaskQueue {
+    return [[SKTaskQueue alloc] init];
+}
+
+- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andTaskQueue:(nullable SKTaskQueue *)taskQueue {
+
     self = [super init];
-    _list = [[SKLruList alloc] initWithConstraint:capacity andCoster:self andSpiller:self];
-    _storage = storage;
-    return self;
-}
-
-- (nullable NSURL *)fileUrlForKey:(nonnull id<NSCopying>)key {
-    NSURL *fileUrl = [_storage fileUrlForKey:key];
-    [_list touchObject:key];
     
-    return fileUrl;
-}
-
-- (void)removeFileUrlForKey:(nonnull id<NSCopying>)key {
-    [_list removeObject:key];
-    [_storage removeFileForKey:key error:nil];
-}
-
-#pragma mark - SKLruListCoster
-
-- (NSUInteger)costForObject:(id)object {
-    return 1;
-}
-
-#pragma mark - SKLruListSpiller
-
-- (void)onSpilled:(id)object {
-    [_storage removeFileForKey:object error:nil];
+    _lruTable = [[SKLruStorage alloc] initWithConstraint:constraint];
+    _lruTable.coster = coster;
+    
+    if(loader) {
+        _loader = loader;
+    } else {
+        _loader = [[SKFileCacheDownloader alloc] init];
+    }
+    
+    if(taskQueue) {
+        _taskQueue = taskQueue;
+    } else {
+        _taskQueue = [SKFileCache defaultTaskQueue];
+    }
+    
+    return self;
 }
 
 @end

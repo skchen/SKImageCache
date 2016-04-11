@@ -2,28 +2,16 @@
 //  SKImageCache.h
 //  SKImageCache
 //
-//  Created by Shin-Kai Chen on 2016/3/30.
+//  Created by Shin-Kai Chen on 2016/4/5.
 //  Copyright © 2016年 SK. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "SKAsyncCache.h"
 
 #import "SKFileCache.h"
 
-@import SKUtils;
+@interface SKImageCache : SKAsyncCache
 
-@protocol SKImageCacheDecoder <NSObject>
-
-- (nullable UIImage *)imageForFileUrl:(nonnull NSURL *)fileUrl;
-
-@end
-
-@interface SKImageCache : NSObject
-
-- (nonnull instancetype)initWithLruTable:(nonnull SKLruTable *)lruTable andFileCache:(nonnull SKFileCache *)fileCache andDecoder:(nonnull id<SKImageCacheDecoder>)decoder;
-
-- (nullable UIImage *)imageForKey:(nonnull id<NSCopying>)key;
-- (void)removeImageForKey:(nonnull id<NSCopying>)key;
+- (nonnull instancetype)initWithFileCache:(nonnull SKFileCache *)fileCache andConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andTaskQueue:(nullable SKTaskQueue *)taskQueue;
 
 @end
