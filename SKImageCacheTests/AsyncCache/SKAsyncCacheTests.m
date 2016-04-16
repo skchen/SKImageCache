@@ -57,6 +57,7 @@
 }
 
 - (void)tearDown {
+    asyncCache = nil;
     [super tearDown];
 }
 

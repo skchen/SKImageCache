@@ -42,6 +42,10 @@ NSString *const _Nonnull kNotificationAsyncCacheObjectCacheFailed = @"com.github
     return self;
 }
 
+- (void)dealloc {
+    [_lruTable removeAllObjects];
+}
+
 - (BOOL)suspended {
     return _taskQueue.suspended;
 }
