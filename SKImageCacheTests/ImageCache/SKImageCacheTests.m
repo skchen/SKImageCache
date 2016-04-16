@@ -20,7 +20,7 @@
 @implementation SKImageCacheTests {
     SKImageCache *asyncImageCache;
     
-    SKLruTable *mockLruTable;
+    SKLruDictionary *mockLruDictionary;
     id<SKLruCoster> mockCoster;
     id<SKAsyncCacheDelegate> mockDelegate;
     SKFileCache *mockFileCache;
@@ -38,7 +38,7 @@
 - (void)setUp {
     [super setUp];
     
-    mockLruTable = mock([SKLruTable class]);
+    mockLruDictionary = mock([SKLruDictionary class]);
     mockCoster = mockProtocol(@protocol(SKLruCoster));
     mockDelegate = mockProtocol(@protocol(SKAsyncCacheDelegate));
     mockFileCache = mock([SKFileCache class]);
@@ -59,7 +59,7 @@
     
     asyncImageCache = [[SKImageCache alloc] initWithFileCache:mockFileCache andConstraint:1 andCoster:mockCoster andLoader:self andTaskQueue:taskQueue];
     asyncImageCache.delegate = mockDelegate;
-    [asyncImageCache setValue:mockLruTable forKey:@"lruTable"];
+    [asyncImageCache setValue:mockLruDictionary forKey:@"lruDictionary"];
     
     [given([mockFileCache delegate]) willReturn:asyncImageCache];
     
@@ -79,29 +79,29 @@
 }
 
 - (void)test_shouldLoadObject_whenObjectIsNotCached {
-    [given([mockLruTable objectForKey:mockRemoteUrl1]) willReturn:nil];
+    [given([mockLruDictionary objectForKey:mockRemoteUrl1]) willReturn:nil];
     
     [asyncImageCache cacheObjectForKey:mockRemoteUrl1];
     [NSThread sleepForTimeInterval:1];
     
     [verify(mockFileCache) cacheObjectForKey:mockRemoteUrl1];
-    [verify(mockLruTable) setObject:mockImage1 forKey:mockRemoteUrl1];
+    [verify(mockLruDictionary) setObject:mockImage1 forKey:mockRemoteUrl1];
     [verify(mockDelegate) asyncCache:asyncImageCache didCacheObject:mockImage1 forKey:mockRemoteUrl1];
 }
 
 - (void)test_shouldNotLoadObject_whenObjectIsCached {
-    [given([mockLruTable objectForKey:mockRemoteUrl1]) willReturn:mockImage1];
+    [given([mockLruDictionary objectForKey:mockRemoteUrl1]) willReturn:mockImage1];
     
     [asyncImageCache cacheObjectForKey:mockRemoteUrl1];
     [NSThread sleepForTimeInterval:1];
     
     [verifyCount(mockFileCache, never()) cacheObjectForKey:mockRemoteUrl1];
-    [verifyCount(mockLruTable, never()) setObject:mockImage1 forKey:mockRemoteUrl1];
+    [verifyCount(mockLruDictionary, never()) setObject:mockImage1 forKey:mockRemoteUrl1];
     [verify(mockDelegate) asyncCache:asyncImageCache didCacheObject:mockImage1 forKey:mockRemoteUrl1];
 }
 
 - (void)test_shouldGetError_whenObjectIsNotCachedAndUnableToLoad {
-    [given([mockLruTable objectForKey:mockRemoteUrl2]) willReturn:nil];
+    [given([mockLruDictionary objectForKey:mockRemoteUrl2]) willReturn:nil];
     
     [asyncImageCache cacheObjectForKey:mockRemoteUrl2];
     [NSThread sleepForTimeInterval:1];

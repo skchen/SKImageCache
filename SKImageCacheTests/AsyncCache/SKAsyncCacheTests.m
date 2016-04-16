@@ -20,7 +20,7 @@
 @implementation SKAsyncCacheTests {
     SKAsyncCache *asyncCache;
     
-    SKLruTable *mockLruTable;
+    SKLruDictionary *mockLruDictionary;
     id<SKLruCoster> mockCoster;
     id<SKAsyncCacheDelegate> mockDelegate;
     SKTaskQueue *taskQueue;
@@ -36,7 +36,7 @@
 - (void)setUp {
     [super setUp];
     
-    mockLruTable = mock([SKLruTable class]);
+    mockLruDictionary = mock([SKLruDictionary class]);
     mockCoster = mockProtocol(@protocol(SKLruCoster));
     taskQueue = [[SKTaskQueue alloc] init];
     
@@ -53,7 +53,7 @@
     
     asyncCache = [[SKAsyncCache alloc] initWithConstraint:1 andCoster:mockCoster andLoader:self andTaskQueue:taskQueue];
     asyncCache.delegate = mockDelegate;
-    [asyncCache setValue:mockLruTable forKey:@"lruTable"];
+    [asyncCache setValue:mockLruDictionary forKey:@"lruDictionary"];
 }
 
 - (void)tearDown {
@@ -62,7 +62,7 @@
 }
 
 - (void)test_shouldGetNil_whenObjectIsNotCached {
-    [given([mockLruTable objectForKey:mockKey1]) willReturn:nil];
+    [given([mockLruDictionary objectForKey:mockKey1]) willReturn:nil];
     
     id object = [asyncCache objectForKey:mockKey1];
     
@@ -70,7 +70,7 @@
 }
 
 - (void)test_shouldGetObject_whenObjectIsCached {
-    [given([mockLruTable objectForKey:mockKey1]) willReturn:mockObject1];
+    [given([mockLruDictionary objectForKey:mockKey1]) willReturn:mockObject1];
     
     id object = [asyncCache objectForKey:mockKey1];
     
@@ -78,27 +78,27 @@
 }
 
 - (void)test_shouldLoadObject_whenObjectIsNotCached {
-    [given([mockLruTable objectForKey:mockKey1]) willReturn:nil];
+    [given([mockLruDictionary objectForKey:mockKey1]) willReturn:nil];
     
     [asyncCache cacheObjectForKey:mockKey1];
     [NSThread sleepForTimeInterval:1];
     
-    [verify(mockLruTable) setObject:mockObject1 forKey:mockKey1];
+    [verify(mockLruDictionary) setObject:mockObject1 forKey:mockKey1];
     [verify(mockDelegate) asyncCache:asyncCache didCacheObject:mockObject1 forKey:mockKey1];
 }
 
 - (void)test_shouldNotLoadObject_whenObjectIsCached {
-    [given([mockLruTable objectForKey:mockKey1]) willReturn:mockObject1];
+    [given([mockLruDictionary objectForKey:mockKey1]) willReturn:mockObject1];
     
     [asyncCache cacheObjectForKey:mockKey1];
     [NSThread sleepForTimeInterval:1];
     
-    [verifyCount(mockLruTable, never()) setObject:mockObject1 forKey:mockKey1];
+    [verifyCount(mockLruDictionary, never()) setObject:mockObject1 forKey:mockKey1];
     [verify(mockDelegate) asyncCache:asyncCache didCacheObject:mockObject1 forKey:mockKey1];
 }
 
 - (void)test_shouldGetError_whenObjectIsNotCachedAndUnableToLoad {
-    [given([mockLruTable objectForKey:mockKey2]) willReturn:nil];
+    [given([mockLruDictionary objectForKey:mockKey2]) willReturn:nil];
     
     [asyncCache cacheObjectForKey:mockKey2];
     [NSThread sleepForTimeInterval:1];

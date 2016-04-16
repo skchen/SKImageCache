@@ -29,8 +29,8 @@ NSString *const _Nonnull kNotificationAsyncCacheObjectCacheFailed = @"com.github
 - (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andTaskQueue:(nullable SKTaskQueue *)taskQueue {
 
     self = [super init];
-    _lruTable = [[SKLruTable alloc] initWithConstraint:constraint];
-    _lruTable.coster = coster;
+    _lruDictionary = [[SKLruDictionary alloc] initWithConstraint:constraint];
+    _lruDictionary.coster = coster;
     _loader = loader;
     
     if(taskQueue) {
@@ -43,7 +43,7 @@ NSString *const _Nonnull kNotificationAsyncCacheObjectCacheFailed = @"com.github
 }
 
 - (void)dealloc {
-    [_lruTable removeAllObjects];
+    [_lruDictionary removeAllObjects];
 }
 
 - (BOOL)suspended {
@@ -55,11 +55,11 @@ NSString *const _Nonnull kNotificationAsyncCacheObjectCacheFailed = @"com.github
 }
 
 - (nullable id)objectForKey:(nonnull id<NSCopying>)key {
-    return [_lruTable objectForKey:key];
+    return [_lruDictionary objectForKey:key];
 }
 
 - (void)cacheObjectForKey:(id<NSCopying>)key {
-    id object = [_lruTable objectForKey:key];
+    id object = [_lruDictionary objectForKey:key];
     if(object) {
         [_delegate asyncCache:self didCacheObject:object forKey:key];
     } else {
@@ -75,7 +75,7 @@ NSString *const _Nonnull kNotificationAsyncCacheObjectCacheFailed = @"com.github
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
         
         [_loader loadObjectForKey:key success:^(id  _Nonnull object) {
-            [_lruTable setObject:object forKey:key];
+            [_lruDictionary setObject:object forKey:key];
             [self notifyObject:object forKey:key];
             dispatch_semaphore_signal(sema);
         } failure:^(NSError * _Nonnull error) {

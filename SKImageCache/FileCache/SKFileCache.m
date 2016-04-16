@@ -8,6 +8,8 @@
 
 #import "SKFileCache.h"
 
+#import "SKAsyncCache_Protected.h"
+
 #import "SKFileCacheDownloader.h"
 
 @interface SKFileCache ()
@@ -18,16 +20,12 @@
 
 @implementation SKFileCache
 
-+ (SKTaskQueue *)defaultTaskQueue {
-    return [[SKTaskQueue alloc] init];
-}
-
 - (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andTaskQueue:(nullable SKTaskQueue *)taskQueue {
 
     self = [super init];
     
-    _lruTable = [[SKLruStorage alloc] initWithConstraint:constraint];
-    _lruTable.coster = coster;
+    _lruDictionary = [[SKLruStorage alloc] initWithConstraint:constraint];
+    _lruDictionary.coster = coster;
     
     if(loader) {
         _loader = loader;
@@ -38,7 +36,7 @@
     if(taskQueue) {
         _taskQueue = taskQueue;
     } else {
-        _taskQueue = [SKFileCache defaultTaskQueue];
+        _taskQueue = [SKAsyncCache defaultTaskQueue];
     }
     
     return self;

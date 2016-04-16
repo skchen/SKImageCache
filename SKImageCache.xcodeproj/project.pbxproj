@@ -53,6 +53,8 @@
 		828D19B21CB4A1A800F4CFC4 /* SKFileCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 828D19B01CB4A1A800F4CFC4 /* SKFileCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		828D19B31CB4A1A800F4CFC4 /* SKFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 828D19B11CB4A1A800F4CFC4 /* SKFileCache.m */; };
 		828D19B51CB4A1BA00F4CFC4 /* SKFileCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 828D19B41CB4A1BA00F4CFC4 /* SKFileCacheTests.m */; };
+		8294129E1CC1D487002F6594 /* SKAsyncCache_Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 8294129D1CC1D0E5002F6594 /* SKAsyncCache_Protected.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8294129F1CC1D48E002F6594 /* SKAsyncCache_Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 8294129D1CC1D0E5002F6594 /* SKAsyncCache_Protected.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +97,7 @@
 		828D19B01CB4A1A800F4CFC4 /* SKFileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFileCache.h; sourceTree = "<group>"; };
 		828D19B11CB4A1A800F4CFC4 /* SKFileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFileCache.m; sourceTree = "<group>"; };
 		828D19B41CB4A1BA00F4CFC4 /* SKFileCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFileCacheTests.m; sourceTree = "<group>"; };
+		8294129D1CC1D0E5002F6594 /* SKAsyncCache_Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKAsyncCache_Protected.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				828D19731CAD621F00F4CFC4 /* SKAsyncCache.h */,
+				8294129D1CC1D0E5002F6594 /* SKAsyncCache_Protected.h */,
 				828D19741CAD621F00F4CFC4 /* SKAsyncCache.m */,
 			);
 			path = AsyncCache;
@@ -253,6 +257,7 @@
 			files = (
 				8225864F1CB6EF4100E01E7D /* SKImageCacheFramework.h in Headers */,
 				822586501CB6EF4100E01E7D /* SKAsyncCache.h in Headers */,
+				8294129F1CC1D48E002F6594 /* SKAsyncCache_Protected.h in Headers */,
 				822586511CB6EF4100E01E7D /* SKImageCacheDecoder.h in Headers */,
 				822586521CB6EF4100E01E7D /* SKImageCache.h in Headers */,
 				822586541CB6EF4100E01E7D /* SKFileCacheDownloader.h in Headers */,
@@ -266,6 +271,7 @@
 			files = (
 				826803941CAA258E00C8B952 /* SKImageCacheFramework.h in Headers */,
 				828D19751CAD621F00F4CFC4 /* SKAsyncCache.h in Headers */,
+				8294129E1CC1D487002F6594 /* SKAsyncCache_Protected.h in Headers */,
 				824C231E1CB52AD500352A87 /* SKImageCacheDecoder.h in Headers */,
 				828D19AC1CB4903B00F4CFC4 /* SKImageCache.h in Headers */,
 				824C23261CB52E6100352A87 /* SKFileCacheDownloader.h in Headers */,

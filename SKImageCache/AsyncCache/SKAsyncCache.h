@@ -31,15 +31,9 @@ typedef void (^FailureBlock)(NSError* _Nonnull error);
 
 @end
 
-@interface SKAsyncCache : NSObject {
-    @protected
-    SKLruTable *_lruTable;
-    SKTaskQueue *_taskQueue;
-    id<SKAsyncCacheLoader> _loader;
-    __weak id<SKAsyncCacheDelegate> _delegate;
-}
+@interface SKAsyncCache : NSObject 
 
-@property(nonatomic, strong, readonly, nonnull) SKLruTable *lruTable;
+@property(nonatomic, strong, readonly, nonnull) SKLruDictionary *lruDictionary;
 @property(nonatomic, strong, readonly, nonnull) id<SKAsyncCacheLoader> loader;
 @property(nonatomic, strong, nullable) NSNotificationCenter *notificationCenter;
 @property(nonatomic, weak, nullable) id<SKAsyncCacheDelegate> delegate;
@@ -49,9 +43,5 @@ typedef void (^FailureBlock)(NSError* _Nonnull error);
 
 - (nullable id)objectForKey:(nonnull id<NSCopying>)key;
 - (void)cacheObjectForKey:(nonnull id<NSCopying>)key;
-
-#pragma mark - Protected
-
-- (nonnull SKTask *)taskToLoadObjectForKey:(nonnull id<NSCopying>)key;
 
 @end

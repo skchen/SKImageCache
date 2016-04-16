@@ -8,6 +8,8 @@
 
 #import "SKImageCache.h"
 
+#import "SKAsyncCache_Protected.h"
+
 #import "SKImageCacheDecoder.h"
 
 @interface SKImageCache () <SKAsyncCacheDelegate>
@@ -41,7 +43,7 @@
 #pragma mark - Override
 
 - (void)cacheObjectForKey:(id<NSCopying>)key {
-    id object = [_lruTable objectForKey:key];
+    id object = [_lruDictionary objectForKey:key];
     if(object) {
         [_delegate asyncCache:self didCacheObject:object forKey:key];
     } else {
