@@ -1,4 +1,4 @@
 github "hamcrest/OCHamcrest" "v5.2.0"
-github "skchen/SKUtils" "v0.4.4"
+github "skchen/SKUtils" "v0.1.4"
 github "jonreid/OCMockito" "d93701ae36d35f0b77587a2f82cf03199cd753ba"
-github "skchen/SKTaskUtils" "v0.1.8"
+github "skchen/SKTaskUtils" "v0.1.9"
