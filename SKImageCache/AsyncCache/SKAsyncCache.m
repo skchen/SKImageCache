@@ -54,6 +54,10 @@ NSString *const _Nonnull kNotificationAsyncCacheObjectCacheFailed = @"com.github
     _lruDictionary.constraint = constraint;
 }
 
+- (NSUInteger)cost {
+    return _lruDictionary.cost;
+}
+
 - (BOOL)suspended {
     return _taskQueue.suspended;
 }

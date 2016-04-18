@@ -35,7 +35,8 @@ typedef void (^FailureBlock)(NSError* _Nonnull error);
 
 @property(nonatomic, strong, readonly, nonnull) SKLruDictionary *lruDictionary;
 @property(nonatomic, strong, readonly, nonnull) id<SKAsyncCacheLoader> loader;
-@property(nonatomic, assign, readonly) NSUInteger constraint;
+@property(nonatomic, assign) NSUInteger constraint;
+@property(nonatomic, assign, readonly) NSUInteger cost;
 @property(nonatomic, strong, nullable) NSNotificationCenter *notificationCenter;
 @property(nonatomic, weak, nullable) id<SKAsyncCacheDelegate> delegate;
 @property(nonatomic, assign) BOOL suspended;
