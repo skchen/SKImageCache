@@ -19,3 +19,4 @@ FOUNDATION_EXPORT const unsigned char SKImageCacheVersionString[];
 #import <SKImageCache/SKImageCache.h>
 #import <SKImageCache/SKFileCache.h>
 #import <SKImageCache/SKAsyncCache.h>
+#import <SKImageCache/SKAsyncCache_Protected.h>

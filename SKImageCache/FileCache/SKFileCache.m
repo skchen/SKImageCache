@@ -14,17 +14,31 @@
 
 @interface SKFileCache ()
 
-@property(nonatomic, strong, readonly, nonnull) SKAsyncCache *asyncCache;
+@property(nonatomic, strong, readonly, nonnull) NSString *lruDictionaryPath;
+@property(nonatomic, readonly, nonnull) Class archiver;
 
 @end
 
 @implementation SKFileCache
 
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andTaskQueue:(nullable SKTaskQueue *)taskQueue {
+- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(id<SKLruCoster>)coster andLoader:(id<SKAsyncCacheLoader>)loader andTaskQueue:(SKTaskQueue *)taskQueue {
+    return [self initWithPath:nil andConstraint:constraint andCoster:coster andLoader:loader andTaskQueue:taskQueue];
+}
+
+- (nonnull instancetype)initWithPath:(nullable NSString *)path andConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andTaskQueue:(nullable SKTaskQueue *)taskQueue {
 
     self = [super init];
     
-    _lruDictionary = [[SKLruStorage alloc] initWithConstraint:constraint];
+    _lruDictionaryPath = path;
+    
+    if(_lruDictionaryPath) {
+        _lruDictionary = [NSKeyedUnarchiver unarchiveObjectWithFile:_lruDictionaryPath];
+    }
+    
+    if(!_lruDictionary) {
+        _lruDictionary = [[SKLruStorage alloc] initWithConstraint:constraint];
+    }
+    
     _lruDictionary.coster = coster;
     
     if(loader) {
@@ -39,7 +53,33 @@
         _taskQueue = [SKAsyncCache defaultTaskQueue];
     }
     
+    _archiver = [NSKeyedArchiver class];
+    
     return self;
+}
+
+- (SKTask *)taskToLoadObjectForKey:(id<NSCopying>)key {
+    return [[SKTask alloc] initWithId:key block:^{
+        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+        
+        [_loader loadObjectForKey:key success:^(id  _Nonnull object) {
+            [_lruDictionary setObject:object forKey:key];
+            
+            if(_lruDictionaryPath) {
+                if(![_archiver archiveRootObject:_lruDictionary toFile:_lruDictionaryPath]) {
+                    NSLog(@"Unable to save lru dictionary");
+                }
+            }
+            
+            [self notifyObject:object forKey:key];
+            dispatch_semaphore_signal(sema);
+        } failure:^(NSError * _Nonnull error) {
+            [self notifyError:error forKey:key];
+            dispatch_semaphore_signal(sema);
+        }];
+        
+        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    }];
 }
 
 @end

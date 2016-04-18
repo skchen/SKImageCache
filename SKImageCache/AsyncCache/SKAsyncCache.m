@@ -46,6 +46,14 @@ NSString *const _Nonnull kNotificationAsyncCacheObjectCacheFailed = @"com.github
     [_lruDictionary removeAllObjects];
 }
 
+- (NSUInteger)constraint {
+    return _lruDictionary.constraint;
+}
+
+- (void)setConstraint:(NSUInteger)constraint {
+    _lruDictionary.constraint = constraint;
+}
+
 - (BOOL)suspended {
     return _taskQueue.suspended;
 }
@@ -61,7 +69,7 @@ NSString *const _Nonnull kNotificationAsyncCacheObjectCacheFailed = @"com.github
 - (void)cacheObjectForKey:(id<NSCopying>)key {
     id object = [_lruDictionary objectForKey:key];
     if(object) {
-        [_delegate asyncCache:self didCacheObject:object forKey:key];
+        [self notifyObject:object forKey:key];
     } else {
         SKTask *task = [self taskToLoadObjectForKey:key];
         [_taskQueue insertTask:task];

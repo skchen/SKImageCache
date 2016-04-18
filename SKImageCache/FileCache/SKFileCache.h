@@ -14,4 +14,6 @@
 
 @interface SKFileCache : SKAsyncCache
 
+- (nonnull instancetype)initWithPath:(nullable NSString *)path andConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andTaskQueue:(nullable SKTaskQueue *)taskQueue;
+
 @end
