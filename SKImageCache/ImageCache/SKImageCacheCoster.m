@@ -12,7 +12,7 @@
 
 - (NSUInteger)costForObject:(id)object {
     UIImage *image = (UIImage *)object;
-    NSLog(@"imageSize: %@x%@", @(image.size.width), @(image.size.height));
+    //NSLog(@"imageSize: %@x%@", @(image.size.width), @(image.size.height));
     return image.size.width*image.size.height;
 }
 

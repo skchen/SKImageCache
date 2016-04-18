@@ -27,7 +27,7 @@
             NSLog(@"Unable to get attributes: %@", error);
         } else {
             long long fileSize = [attributes fileSize];
-            NSLog(@"fileSize: %@", @(fileSize));
+            //NSLog(@"fileSize: %@", @(fileSize));
             return (NSUInteger)fileSize;
         }
     }
