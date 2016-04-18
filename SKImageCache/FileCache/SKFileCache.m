@@ -37,8 +37,10 @@
     }
     
     if(!_lruDictionary) {
-        _lruDictionary = [[SKLruStorage alloc] initWithConstraint:constraint];
+        _lruDictionary = [[SKLruStorage alloc] init];
     }
+    
+    _lruDictionary.constraint = constraint;
     
     if(coster) {
         _lruDictionary.coster = coster;
