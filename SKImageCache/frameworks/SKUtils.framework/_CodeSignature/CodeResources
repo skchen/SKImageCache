@@ -4,29 +4,33 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Headers/SKLruCache.h</key>
+		<key>Headers/SKLruArray.h</key>
 		<data>
-		49YDzrWZhUD7aUd8y2roEZGMBlc=
+		sYfXZHtQoS7jmTYQMUKNJsn/qpM=
 		</data>
-		<key>Headers/SKLruList.h</key>
+		<key>Headers/SKLruDictionary.h</key>
 		<data>
-		ep6dYLxFlXgqLUojo0kjStafmJQ=
+		rxrJxHrRBZcYr00UJ9Bfwk1NaCA=
 		</data>
 		<key>Headers/SKLruStorage.h</key>
 		<data>
-		HTuGox4ZqPmGUBxSKWZSYoYSF4I=
-		</data>
-		<key>Headers/SKLruTable.h</key>
-		<data>
-		kdCvqrJUQUlqbeKf06E7IuPhY40=
+		QU4Zh9qhbVR6Ciy9aU1opt59JQ8=
 		</data>
 		<key>Headers/SKOrderedDictionary.h</key>
 		<data>
 		rUvhcovaUsMjGi1MU96f+kdFSMU=
 		</data>
+		<key>Headers/SKTask.h</key>
+		<data>
+		XDl//sHHUApzfKAwaycdaiGxQHQ=
+		</data>
+		<key>Headers/SKTaskQueue.h</key>
+		<data>
+		H5vkvLHA7dWjp2ZC/sok2hsz1fI=
+		</data>
 		<key>Headers/SKUtils.h</key>
 		<data>
-		r1iKIUPyg8k9i1UTj6BSuXi/T9Y=
+		BPTbvX+JQIqfU2Pgu3cc2XfuxOA=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -39,29 +43,33 @@
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Headers/SKLruCache.h</key>
+		<key>Headers/SKLruArray.h</key>
 		<data>
-		49YDzrWZhUD7aUd8y2roEZGMBlc=
+		sYfXZHtQoS7jmTYQMUKNJsn/qpM=
 		</data>
-		<key>Headers/SKLruList.h</key>
+		<key>Headers/SKLruDictionary.h</key>
 		<data>
-		ep6dYLxFlXgqLUojo0kjStafmJQ=
+		rxrJxHrRBZcYr00UJ9Bfwk1NaCA=
 		</data>
 		<key>Headers/SKLruStorage.h</key>
 		<data>
-		HTuGox4ZqPmGUBxSKWZSYoYSF4I=
-		</data>
-		<key>Headers/SKLruTable.h</key>
-		<data>
-		kdCvqrJUQUlqbeKf06E7IuPhY40=
+		QU4Zh9qhbVR6Ciy9aU1opt59JQ8=
 		</data>
 		<key>Headers/SKOrderedDictionary.h</key>
 		<data>
 		rUvhcovaUsMjGi1MU96f+kdFSMU=
 		</data>
+		<key>Headers/SKTask.h</key>
+		<data>
+		XDl//sHHUApzfKAwaycdaiGxQHQ=
+		</data>
+		<key>Headers/SKTaskQueue.h</key>
+		<data>
+		H5vkvLHA7dWjp2ZC/sok2hsz1fI=
+		</data>
 		<key>Headers/SKUtils.h</key>
 		<data>
-		r1iKIUPyg8k9i1UTj6BSuXi/T9Y=
+		BPTbvX+JQIqfU2Pgu3cc2XfuxOA=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>

@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import "SKLruTable.h"
+#import "SKLruDictionary.h"
 
-@interface SKLruStorage : SKLruTable
+@interface SKLruStorage : SKLruDictionary
 
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andSpiller:(nullable id<SKLruTableSpiller>)spiller andFileManager:(nullable NSFileManager *)fileManager;
+@property(nonatomic, strong, nonnull) NSFileManager *fileManager;
 
 @end

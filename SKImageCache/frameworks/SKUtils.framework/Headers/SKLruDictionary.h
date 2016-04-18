@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "SKLruList.h"
+#import "SKLruArray.h"
 
 @protocol SKLruTableSpiller <NSObject>
 
@@ -16,31 +16,31 @@
 
 @end
 
-@interface SKLruTable : NSObject {
+@interface SKLruDictionary : NSObject <NSCoding> {
     @protected
     NSUInteger _constraint;
-    __weak id<SKLruCoster> _coster;
+    id<SKLruCoster> _coster;
     __weak id<SKLruTableSpiller> _spiller;
 }
 
-@property(nonatomic, assign, readonly) NSUInteger count;
+@property(nonatomic, assign) NSUInteger constraint;
 
-@property(nonatomic, assign, readonly) NSUInteger constraint;
+@property(nonatomic, assign, readonly) NSUInteger count;
 @property(nonatomic, assign, readonly) NSUInteger cost;
 
-@property(nonatomic, weak, nullable) id<SKLruCoster> coster;
+@property(nonatomic, strong, nonnull) id<SKLruCoster> coster;
 @property(nonatomic, weak, nullable) id<SKLruTableSpiller> spiller;
 
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andSpiller:(nullable id<SKLruTableSpiller>)spiller;
-
-- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andSpiller:(nullable id<SKLruTableSpiller>)spiller;
+- (nonnull instancetype)initWithConstraint:(NSUInteger)constraint;
 
 - (nullable id)objectForKey:(nonnull id<NSCopying>)key;
 - (void)setObject:(nonnull id)object forKey:(nonnull id<NSCopying>)key;
 
+- (nonnull NSArray *)allKeys;
 - (nonnull NSArray *)allValues;
 
 - (void)removeObjectForKey:(nonnull id<NSCopying>)key;
+- (void)removeLastObject;
 - (void)removeAllObjects;
 
 @end
