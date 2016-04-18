@@ -15,5 +15,6 @@
 
 - (nonnull instancetype)initWithFileCache:(nonnull SKFileCache *)fileCache;
 - (nonnull instancetype)initWithFileCache:(nonnull SKFileCache *)fileCache andSize:(CGSize)size;
+- (nonnull instancetype)initWithFileCache:(nonnull SKFileCache *)fileCache andConstraint:(NSUInteger)constraint;
 
 @end

@@ -11,6 +11,7 @@
 #import "SKAsyncCache_Protected.h"
 
 #import "SKImageCacheDecoder.h"
+#import "SKImageCacheCoster.h"
 
 @interface SKImageCache () <SKAsyncCacheDelegate>
 
@@ -30,6 +31,10 @@
     
     if(!loader) {
         loader = [[SKImageCacheDecoder alloc] initWithFileCache:fileCache];
+    }
+    
+    if(!coster) {
+        coster = [[SKImageCacheCoster alloc] init];
     }
     
     self = [super initWithConstraint:constraint andCoster:coster andLoader:loader andTaskQueue:taskQueue];

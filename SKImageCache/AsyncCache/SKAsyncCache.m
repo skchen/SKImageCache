@@ -80,6 +80,14 @@ NSString *const _Nonnull kNotificationAsyncCacheObjectCacheFailed = @"com.github
     }
 }
 
+- (void)removeObjectForKey:(nonnull id<NSCopying>)key {
+    [_lruDictionary removeObjectForKey:key];
+}
+
+- (void)removeLastObject {
+    [_lruDictionary removeLastObject];
+}
+
 #pragma mark - Local
 
 - (SKTask *)taskToLoadObjectForKey:(id<NSCopying>)key {

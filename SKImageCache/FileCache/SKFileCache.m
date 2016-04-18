@@ -11,6 +11,7 @@
 #import "SKAsyncCache_Protected.h"
 
 #import "SKFileCacheDownloader.h"
+#import "SKFileCacheCoster.h"
 
 @interface SKFileCache ()
 
@@ -39,7 +40,11 @@
         _lruDictionary = [[SKLruStorage alloc] initWithConstraint:constraint];
     }
     
-    _lruDictionary.coster = coster;
+    if(coster) {
+        _lruDictionary.coster = coster;
+    } else {
+        _lruDictionary.coster = [[SKFileCacheCoster alloc] init];
+    }
     
     if(loader) {
         _loader = loader;
@@ -56,6 +61,12 @@
     _archiver = [NSKeyedArchiver class];
     
     return self;
+}
+
+- (void)dealloc {
+    if(!_lruDictionaryPath) {
+        [_lruDictionary removeAllObjects];
+    }
 }
 
 - (SKTask *)taskToLoadObjectForKey:(id<NSCopying>)key {

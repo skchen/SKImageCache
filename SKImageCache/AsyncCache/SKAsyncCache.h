@@ -46,4 +46,7 @@ typedef void (^FailureBlock)(NSError* _Nonnull error);
 - (nullable id)objectForKey:(nonnull id<NSCopying>)key;
 - (void)cacheObjectForKey:(nonnull id<NSCopying>)key;
 
+- (void)removeObjectForKey:(nonnull id<NSCopying>)key;
+- (void)removeLastObject;
+
 @end

@@ -55,6 +55,14 @@
 		828D19B51CB4A1BA00F4CFC4 /* SKFileCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 828D19B41CB4A1BA00F4CFC4 /* SKFileCacheTests.m */; };
 		8294129E1CC1D487002F6594 /* SKAsyncCache_Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 8294129D1CC1D0E5002F6594 /* SKAsyncCache_Protected.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8294129F1CC1D48E002F6594 /* SKAsyncCache_Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 8294129D1CC1D0E5002F6594 /* SKAsyncCache_Protected.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		829412AD1CC4FB41002F6594 /* SKImageCacheCoster.h in Headers */ = {isa = PBXBuildFile; fileRef = 829412AB1CC4FB41002F6594 /* SKImageCacheCoster.h */; };
+		829412AE1CC4FB41002F6594 /* SKImageCacheCoster.h in Headers */ = {isa = PBXBuildFile; fileRef = 829412AB1CC4FB41002F6594 /* SKImageCacheCoster.h */; };
+		829412AF1CC4FB41002F6594 /* SKImageCacheCoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 829412AC1CC4FB41002F6594 /* SKImageCacheCoster.m */; };
+		829412B01CC4FB41002F6594 /* SKImageCacheCoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 829412AC1CC4FB41002F6594 /* SKImageCacheCoster.m */; };
+		829412B31CC4FD21002F6594 /* SKFileCacheCoster.h in Headers */ = {isa = PBXBuildFile; fileRef = 829412B11CC4FD21002F6594 /* SKFileCacheCoster.h */; };
+		829412B41CC4FD21002F6594 /* SKFileCacheCoster.h in Headers */ = {isa = PBXBuildFile; fileRef = 829412B11CC4FD21002F6594 /* SKFileCacheCoster.h */; };
+		829412B51CC4FD21002F6594 /* SKFileCacheCoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 829412B21CC4FD21002F6594 /* SKFileCacheCoster.m */; };
+		829412B61CC4FD21002F6594 /* SKFileCacheCoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 829412B21CC4FD21002F6594 /* SKFileCacheCoster.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +106,10 @@
 		828D19B11CB4A1A800F4CFC4 /* SKFileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFileCache.m; sourceTree = "<group>"; };
 		828D19B41CB4A1BA00F4CFC4 /* SKFileCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFileCacheTests.m; sourceTree = "<group>"; };
 		8294129D1CC1D0E5002F6594 /* SKAsyncCache_Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKAsyncCache_Protected.h; sourceTree = "<group>"; };
+		829412AB1CC4FB41002F6594 /* SKImageCacheCoster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKImageCacheCoster.h; sourceTree = "<group>"; };
+		829412AC1CC4FB41002F6594 /* SKImageCacheCoster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKImageCacheCoster.m; sourceTree = "<group>"; };
+		829412B11CC4FD21002F6594 /* SKFileCacheCoster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFileCacheCoster.h; sourceTree = "<group>"; };
+		829412B21CC4FD21002F6594 /* SKFileCacheCoster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFileCacheCoster.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +211,8 @@
 				828D19B11CB4A1A800F4CFC4 /* SKFileCache.m */,
 				824C23241CB52E6000352A87 /* SKFileCacheDownloader.h */,
 				824C23251CB52E6100352A87 /* SKFileCacheDownloader.m */,
+				829412B11CC4FD21002F6594 /* SKFileCacheCoster.h */,
+				829412B21CC4FD21002F6594 /* SKFileCacheCoster.m */,
 			);
 			path = FileCache;
 			sourceTree = "<group>";
@@ -218,6 +232,8 @@
 				828D19AB1CB4903B00F4CFC4 /* SKImageCache.m */,
 				824C231C1CB52AD500352A87 /* SKImageCacheDecoder.h */,
 				824C231D1CB52AD500352A87 /* SKImageCacheDecoder.m */,
+				829412AB1CC4FB41002F6594 /* SKImageCacheCoster.h */,
+				829412AC1CC4FB41002F6594 /* SKImageCacheCoster.m */,
 			);
 			path = ImageCache;
 			sourceTree = "<group>";
@@ -262,6 +278,8 @@
 				822586521CB6EF4100E01E7D /* SKImageCache.h in Headers */,
 				822586541CB6EF4100E01E7D /* SKFileCacheDownloader.h in Headers */,
 				822586551CB6EF4100E01E7D /* SKFileCache.h in Headers */,
+				829412B41CC4FD21002F6594 /* SKFileCacheCoster.h in Headers */,
+				829412AE1CC4FB41002F6594 /* SKImageCacheCoster.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +294,8 @@
 				824C231E1CB52AD500352A87 /* SKImageCacheDecoder.h in Headers */,
 				824C23261CB52E6100352A87 /* SKFileCacheDownloader.h in Headers */,
 				828D19B21CB4A1A800F4CFC4 /* SKFileCache.h in Headers */,
+				829412B31CC4FD21002F6594 /* SKFileCacheCoster.h in Headers */,
+				829412AD1CC4FB41002F6594 /* SKImageCacheCoster.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +488,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				829412B01CC4FB41002F6594 /* SKImageCacheCoster.m in Sources */,
+				829412B61CC4FD21002F6594 /* SKFileCacheCoster.m in Sources */,
 				822586441CB6EF4100E01E7D /* SKAsyncCache.m in Sources */,
 				822586461CB6EF4100E01E7D /* SKFileCache.m in Sources */,
 				822586471CB6EF4100E01E7D /* SKImageCache.m in Sources */,
@@ -480,6 +502,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				829412AF1CC4FB41002F6594 /* SKImageCacheCoster.m in Sources */,
+				829412B51CC4FD21002F6594 /* SKFileCacheCoster.m in Sources */,
 				828D19761CAD621F00F4CFC4 /* SKAsyncCache.m in Sources */,
 				828D19B31CB4A1A800F4CFC4 /* SKFileCache.m in Sources */,
 				828D19AD1CB4903B00F4CFC4 /* SKImageCache.m in Sources */,
