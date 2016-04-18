@@ -13,6 +13,7 @@
 
 @interface SKImageCacheDecoder : NSObject<SKAsyncCacheLoader>
 
-- (nonnull instancetype)initWithAsyncFileCache:(nonnull SKFileCache *)asyncFileCache;
+- (nonnull instancetype)initWithFileCache:(nonnull SKFileCache *)fileCache;
+- (nonnull instancetype)initWithFileCache:(nonnull SKFileCache *)fileCache andSize:(CGSize)size;
 
 @end

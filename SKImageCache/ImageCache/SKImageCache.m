@@ -29,7 +29,7 @@
 - (nonnull instancetype)initWithFileCache:(nonnull SKFileCache *)fileCache andConstraint:(NSUInteger)constraint andCoster:(nullable id<SKLruCoster>)coster andLoader:(nullable id<SKAsyncCacheLoader>)loader andTaskQueue:(nullable SKTaskQueue *)taskQueue {
     
     if(!loader) {
-        loader = [[SKImageCacheDecoder alloc] initWithAsyncFileCache:fileCache];
+        loader = [[SKImageCacheDecoder alloc] initWithFileCache:fileCache];
     }
     
     self = [super initWithConstraint:constraint andCoster:coster andLoader:loader andTaskQueue:taskQueue];
